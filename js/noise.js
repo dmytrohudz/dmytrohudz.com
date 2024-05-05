@@ -15,9 +15,13 @@ function generateNoise(ctx, width, height, alpha = 20) { // Lower alpha for more
 
 function draw() {
     let canvas = document.getElementById('noiseCanvas');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
     let ctx = canvas.getContext('2d');
+    canvas.width = document.body.clientWidth; // full width of the body
+    canvas.height = Math.max(
+        window.innerHeight,
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+    );
 
     generateNoise(ctx, canvas.width, canvas.height);
 
@@ -26,3 +30,5 @@ function draw() {
 }
 
 window.onload = draw;
+window.onresize = draw;
+window.onscroll = draw;
