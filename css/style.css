@@ -134,13 +134,12 @@ html, body {
 }
 
 canvas {
-    position: absolute;
-    -webkit-transform: translate3d(0, 0, 0);
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    z-index: 1;
+    height: 100;
+    z-index: -1;
     pointer-events: none;
 }
 
@@ -374,7 +373,7 @@ main {
     .about-container {
         max-width: 100%;
         padding-top: 20px;
-        padding-bottom: 12px;
+        padding-bottom: 16px;
     }
     
     .about-text {
