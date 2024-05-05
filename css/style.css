@@ -329,6 +329,10 @@ main {
         padding: 24px 16px;
     }
 
+    canvas {
+        height: 150%;
+    }
+
     /* Header */
     .header-content {
         gap: 18px;
