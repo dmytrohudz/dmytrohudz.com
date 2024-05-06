@@ -148,7 +148,7 @@ body::after {
     top: -12.5%; left: -12.5%;
     z-index: 1;
     width: 125%; height: 125%;
-    background: url('https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1714976591/noise_xrndyx.jpg') repeat center center;
+    background: url('/assets/animations/noise.png') repeat center center;
     opacity: 0.1    ;
     animation: noiseMovement 0.09s steps(6) infinite;
     pointer-events: none;
