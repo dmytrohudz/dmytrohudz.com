@@ -338,6 +338,18 @@ main {
 
 /* Breakpoints */
 @media (max-width: 431px) {
+
+    html {
+        height: 100%; /* Ensure the html has a definitive height */
+        overflow: hidden; /* Prevent scrolling from html, but allow inside body */
+    }
+    
+    body {
+        position: relative; /* Positioned context for fixed overlay */
+        min-height: 100%; /* Minimum height as viewport */
+        overflow-x: hidden; /* Prevent horizontal overflow */
+        overflow-y: auto; /* Enable vertical scrolling */
+    }    
     
     header, footer, main {
         padding: 24px 16px;
