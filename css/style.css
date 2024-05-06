@@ -130,7 +130,7 @@ html, body {
     height: 100%;
     font-family: 'Geist', 'SF Pro Display', 'Be Vietnam Pro', sans-serif;
     color: #F0F0F0;
-    background-color: #121212;
+    background-color: #0F0F0F;
 }
 
 canvas {
@@ -148,6 +148,29 @@ body {
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    top: -12.5%; left: -12.5%;
+    z-index: 1;
+    width: 125%; height: 125%;
+    background: url('https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1714976591/noise_xrndyx.jpg') repeat center center;
+    opacity: 0.1    ;
+    animation: noiseMovement 0.09s steps(6) infinite;
+    pointer-events: none;
+}
+
+@keyframes noiseMovement {
+    0%, 100%  { transform: translate(0,0); }
+    10%       { transform: translate(0%,-10%); }
+    30%       { transform: translate(-10%,5%); }
+    50%       { transform: translate(0%,10%); }
+    70%       { transform: translate(10%,-5%); }
+    90%       { transform: translate(10%,5%); }
 }
 
 :root {
@@ -160,7 +183,7 @@ body {
     --white: #FFFFFF;
     --white-text: #F0F0F0;
     --grey-text: #808080;
-    --background: #121212;
+    --background: #0F0F0F;
 }
 
 /* Layout */
