@@ -2,64 +2,37 @@
 
 const fs = require('fs');
 const path = require('path');
+const matter = require('gray-matter');
 
-// Simple markdown frontmatter parser with bilingual support
+// Parse markdown with proper YAML frontmatter parsing
 function parseMarkdown(markdownContent) {
-    const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
-    const match = markdownContent.match(frontmatterRegex);
-    
-    if (!match) {
+    try {
+        const parsed = matter(markdownContent);
+        const metadata = parsed.data;
+        let content = parsed.content;
+        
+        // Split content by Ukrainian separator if it exists
+        let contentEn = content.trim();
+        let contentUk = '';
+        
+        // Check if there's a separator for Ukrainian content
+        const ukSeparatorRegex = /\n---uk---\n/;
+        if (ukSeparatorRegex.test(content)) {
+            const parts = content.split(ukSeparatorRegex);
+            contentEn = parts[0].trim();
+            contentUk = parts[1] ? parts[1].trim() : '';
+        }
+        
+        return {
+            ...metadata,
+            content: contentEn,
+            // Check if body_uk exists in metadata (from Decap CMS), otherwise use the separator-based content
+            content_uk: metadata.body_uk ? metadata.body_uk : contentUk
+        };
+    } catch (error) {
+        console.error('Error parsing markdown:', error);
         return null;
     }
-    
-    const frontmatter = match[1];
-    let content = match[2];
-    
-    // Split content by Ukrainian separator
-    let contentEn = content.trim();
-    let contentUk = '';
-    
-    // Check if there's a separator for Ukrainian content
-    const ukSeparatorRegex = /\n---uk---\n/;
-    if (ukSeparatorRegex.test(content)) {
-        const parts = content.split(ukSeparatorRegex);
-        contentEn = parts[0].trim();
-        contentUk = parts[1] ? parts[1].trim() : '';
-    }
-    
-    // Parse frontmatter (simple YAML-like parsing)
-    const metadata = {};
-    frontmatter.split('\n').forEach(line => {
-        const colonIndex = line.indexOf(':');
-        if (colonIndex > 0) {
-            const key = line.substring(0, colonIndex).trim();
-            let value = line.substring(colonIndex + 1).trim();
-            
-            // Remove quotes if present
-            if ((value.startsWith('"') && value.endsWith('"')) || 
-                (value.startsWith("'") && value.endsWith("'"))) {
-                value = value.slice(1, -1);
-            }
-            
-            // Parse arrays
-            if (value.startsWith('[') && value.endsWith(']')) {
-                value = value.slice(1, -1).split(',').map(item => item.trim().replace(/['"]/g, ''));
-            }
-            
-            // Parse boolean
-            if (value === 'true') value = true;
-            if (value === 'false') value = false;
-            
-            metadata[key] = value;
-        }
-    });
-    
-    return {
-        ...metadata,
-        content: contentEn,
-        // Check if body_uk exists in metadata (from Decap CMS), otherwise use the separator-based content
-        content_uk: metadata.body_uk ? metadata.body_uk : contentUk
-    };
 }
 
 // Convert markdown to HTML (simple conversion)

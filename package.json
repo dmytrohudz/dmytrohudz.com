@@ -7,6 +7,9 @@
     "dev": "python -m http.server 8000",
     "build": "npm run build-posts"
   },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
   "devDependencies": {},
   "keywords": ["blog", "cms", "decap", "cloudflare"],
   "author": "Dmytro Hudz",
