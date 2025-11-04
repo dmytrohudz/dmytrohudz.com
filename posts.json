@@ -1,17 +1,5 @@
 [
   {
-    "title": "To Delete",
-    "title_uk": "To Delete",
-    "date": "2026-01-26T21:40:00.000Z",
-    "excerpt": "Test Excerpt",
-    "excerpt_uk": "Test Excerpt",
-    "content": "<p>This is the test post</p>",
-    "content_uk": "<p>This is the test post</p>",
-    "slug": "to-delete",
-    "tags": [],
-    "draft": false
-  },
-  {
     "title": "The first post that I've created",
     "title_uk": "Перша стаття, яку я створив",
     "date": "2025-12-22T00:00:00.000Z",
