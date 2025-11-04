@@ -71,13 +71,23 @@ export async function onRequest(context) {
   </div>
   <script>
     (function() {
+      const token = ${JSON.stringify(tokenData.access_token)};
+      const provider = "github";
+      
       function receiveMessage(e) {
-        console.log("receiveMessage", e);
-        // Send the token data back to the opener (CMS window)
+        console.log("receiveMessage from CMS", e);
+        
+        // Send success message with token
+        const data = {
+          token: token,
+          provider: provider
+        };
+        
         window.opener.postMessage(
-          'authorization:github:success:' + JSON.stringify(${JSON.stringify(tokenData)}),
+          "authorization:" + provider + ":success:" + JSON.stringify(data),
           e.origin
         );
+        
         window.removeEventListener("message", receiveMessage, false);
       }
       
@@ -85,7 +95,7 @@ export async function onRequest(context) {
       
       console.log("Posting ready message to CMS");
       // Let the CMS know we're ready
-      window.opener.postMessage("authorizing:github", "*");
+      window.opener.postMessage("authorizing:" + provider, "*");
     })();
   </script>
 </body>
