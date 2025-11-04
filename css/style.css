@@ -1145,6 +1145,10 @@ main {
         gap: 64px;
     }
 
+    .blog-content {
+        gap: 40px;
+    }
+
     .blog-subtitle {
         font-size: 18px;
         line-height: 24px;
