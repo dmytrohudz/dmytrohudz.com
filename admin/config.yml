@@ -14,15 +14,17 @@ collections:
     folder: "posts" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    editor:
+      preview: false # Disable preview since we have custom bilingual structure
     fields: # The fields for each document, usually in front matter
       - {label: "Title (English)", name: "title", widget: "string"}
       - {label: "Title (Ukrainian)", name: "title_uk", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Excerpt (English)", name: "excerpt", widget: "text"}
       - {label: "Excerpt (Ukrainian)", name: "excerpt_uk", widget: "text"}
-      - {label: "Content (English)", name: "body", widget: "markdown"}
-      - {label: "Content (Ukrainian)", name: "body_uk", widget: "markdown", required: false}
-      - {label: "Featured Image", name: "image", widget: "image", required: false}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Draft", name: "draft", widget: "boolean", default: false}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Content (English)", name: "body", widget: "markdown", hint: "Main English content"}
+      - {label: "Content (Ukrainian)", name: "body_uk", widget: "text", required: false, hint: "Ukrainian content (will be added after ---uk--- separator)"}
 
