@@ -157,17 +157,29 @@
             article.className = 'post-item';
             article.setAttribute('data-post-slug', post.slug);
             
+            // Get current language preference (default to 'en')
+            const currentLang = localStorage.getItem('preferred_language') || 'en';
+            
             const formattedDate = postsLoader.formatDate(post.date);
+            
+            // Select title and excerpt based on language
+            const title = currentLang === 'uk' ? (post.title_uk || post.title) : post.title;
+            const excerpt = currentLang === 'uk' ? (post.excerpt_uk || post.excerpt) : post.excerpt;
             
             article.innerHTML = `
                 <div class="post-date"><div>${formattedDate}</div></div>
                 <div class="post-content">
-                    <h2 class="post-title">${post.title}</h2>
-                    <p class="post-excerpt">${post.excerpt}</p>
+                    <h2 class="post-title">${title}</h2>
+                    <p class="post-excerpt">${excerpt}</p>
                 </div>
                 <div class="post-full-content" style="display: none;">
                     ${post.content}
                 </div>
+                <div class="post-full-content-uk" style="display: none;">
+                    ${post.content_uk || post.content}
+                </div>
+                <div class="post-title-en" style="display: none;">${post.title}</div>
+                <div class="post-title-uk" style="display: none;">${post.title_uk || post.title}</div>
             `;
             
             return article;
@@ -176,31 +188,12 @@
         function addClickHandlers() {
             const postItems = document.querySelectorAll('.post-item');
             postItems.forEach(item => {
-                // The excerpt is already set from the markdown file, no need to override it
-                
                 item.addEventListener('click', function () {
-                    // Get post data from the clicked item
-                    const title = this.querySelector('.post-title').textContent;
-                    const date = this.querySelector('.post-date').textContent;
-                    const fullContent = this.querySelector('.post-full-content') ? this.querySelector('.post-full-content').innerHTML : '';
+                    // Get the slug from the clicked item
                     const slug = this.getAttribute('data-post-slug');
                     
-                    // Get the year from the closest year group
-                    const yearGroup = this.closest('.year-group');
-                    const blogYearElement = yearGroup ? yearGroup.querySelector('.blog-year') : null;
-                    const year = blogYearElement ? blogYearElement.textContent.split('-')[0] : new Date().getFullYear();
-                    
-                    // Create URL parameters to pass data to post page
-                    const params = new URLSearchParams({
-                        title: title,
-                        date: date,
-                        year: year,
-                        content: fullContent,
-                        slug: slug
-                    });
-                    
-                    // Navigate to post page with parameters
-                    window.location.href = `post.html?${params.toString()}`;
+                    // Navigate to the clean URL
+                    window.location.href = `/blog/${slug}/`;
                 });
             });
         }

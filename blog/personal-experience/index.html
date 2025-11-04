@@ -4,41 +4,21 @@
     <meta charset="utf-8"/>
     <meta http-equiv="content-language" content="en">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Title — Dmytro Hudz</title>
-    <meta name="description" content="Design, product, and principles."/>
-    <link rel="stylesheet" href="css/style.css">
+    <title>The first post that I've created — Dmytro Hudz</title>
+    <meta name="description" content="In this article, I want to dive deeper into the personal experiences that have shaped my perspective on user experience design"/>
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
-    <script src="js/script.js" defer></script>
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/meta/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/meta/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/meta/favicon-16x16.png">
-    <link rel="manifest" href="assets/meta/site.webmanifest">
+    <script src="../../js/script.js" defer></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/meta/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/meta/site.webmanifest">
     <meta property="og:image" content="https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1715016023/open-graph_s0lp27.jpg">
     <meta name="twitter:image" content="https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1715016023/open-graph_s0lp27.jpg">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
     <script>
-        // Function to truncate content for excerpt
-        function truncateContent(content, maxLength = 150) {
-            // Remove HTML tags for text-only truncation
-            const textContent = content.replace(/<[^>]*>/g, '');
-            
-            if (textContent.length <= maxLength) {
-                return textContent;
-            }
-            
-            // Find the last complete word within the limit
-            const truncated = textContent.substring(0, maxLength);
-            const lastSpaceIndex = truncated.lastIndexOf(' ');
-            
-            if (lastSpaceIndex > 0) {
-                return truncated.substring(0, lastSpaceIndex) + '...';
-            }
-            
-            return truncated + '...';
-        }
-
         document.addEventListener('DOMContentLoaded', function () {
             // Handle back navigation
             var back = document.getElementById('back-link');
@@ -53,73 +33,52 @@
                 });
             }
 
-            // Parse URL parameters and populate post content
-            const urlParams = new URLSearchParams(window.location.search);
-            const titleEn = urlParams.get('title_en') || urlParams.get('title');
-            const titleUk = urlParams.get('title_uk') || titleEn;
-            const date = urlParams.get('date');
-            const year = urlParams.get('year');
-            const contentEn = urlParams.get('content_en') || urlParams.get('content');
-            const contentUk = urlParams.get('content_uk') || contentEn;
-
             // Get current language preference (default to 'en')
             const currentLang = localStorage.getItem('preferred_language') || 'en';
             
-            // Store both versions in data attributes for future language switching
+            // Post data embedded in the page
+            const postData = {
+                title_en: "The first post that I've created",
+                title_uk: "Перша стаття, яку я створив",
+                content_en: "<p>In this article, I want to dive deeper into the personal experiences that have shaped my perspective on user experience design. The excerpt above touches on the surface, but there's so much more to explore.</p>\n<p>Throughout my career, I've encountered numerous situations where the user experience fell short of expectations. These experiences have taught me valuable lessons about what truly matters in design.</p><h2>Key Insights</h2>\n<p>One of the most important realizations I've had is that user experience isn't just about the interface—it's about the entire ecosystem surrounding the user's journey.</p>\n<p>This includes their emotional state, the context of their environment, the tasks they're trying to accomplish, and the broader system they're interacting with.</p><h2>Moving Forward</h2>\n<p>Understanding these interconnected elements is crucial for creating truly meaningful experiences. It's not enough to focus on individual touchpoints; we need to consider the holistic user journey.</p>",
+                content_uk: "<p>У цій статті я хочу глибше зануритися в особистий досвід, який сформував мою перспективу щодо дизайну користувацького досвіду. Наведений вище уривок лише торкається поверхні, але є ще багато чого для дослідження.</p>\n<p>Протягом моєї кар'єри я стикався з численними ситуаціями, коли користувацький досвід не виправдовував очікувань. Цей досвід навчив мене цінним урокам про те, що насправді має значення в дизайні.</p><h2>Ключові висновки</h2>\n<p>Одне з найважливіших усвідомлень, до якого я прийшов, полягає в тому, що користувацький досвід - це не лише інтерфейс, а вся екосистема, що оточує подорож користувача.</p>\n<p>Це включає їхній емоційний стан, контекст їхнього середовища, завдання, які вони намагаються виконати, та ширшу систему, з якою вони взаємодіють.</p><h2>Рухаючись вперед</h2>\n<p>Розуміння цих взаємопов'язаних елементів є вирішальним для створення справді значущих переживань. Недостатньо зосереджуватися на окремих точках дотику; нам потрібно розглядати цілісну подорож користувача.</p>",
+                date: "2025-12-22T00:00:00.000Z"
+            };
+            
             const postTitleElement = document.getElementById('post-title');
             const contentBody = document.querySelector('.post-content-body');
             
+            // Store both versions in data attributes for language switching
             if (postTitleElement) {
-                postTitleElement.setAttribute('data-title-en', titleEn || '');
-                postTitleElement.setAttribute('data-title-uk', titleUk || '');
+                postTitleElement.setAttribute('data-title-en', postData.title_en);
+                postTitleElement.setAttribute('data-title-uk', postData.title_uk);
             }
             
             if (contentBody) {
-                contentBody.setAttribute('data-content-en', contentEn || '');
-                contentBody.setAttribute('data-content-uk', contentUk || '');
+                contentBody.setAttribute('data-content-en', postData.content_en);
+                contentBody.setAttribute('data-content-uk', postData.content_uk);
             }
             
             // Display content based on current language
-            const displayTitle = currentLang === 'uk' ? titleUk : titleEn;
-            const displayContent = currentLang === 'uk' ? contentUk : contentEn;
+            const displayTitle = currentLang === 'uk' ? postData.title_uk : postData.title_en;
+            const displayContent = currentLang === 'uk' ? postData.content_uk : postData.content_en;
 
             if (displayTitle && postTitleElement) {
                 postTitleElement.textContent = displayTitle;
                 document.title = `${displayTitle} — Dmytro Hudz`;
             }
 
-            if (date) {
-                // Parse the date format (e.g., "22\nDEC" -> "DEC-22-2025")
-                // The date comes as "22\nDEC" from the blog page
-                const dateParts = date.split('\n');
-                if (dateParts.length === 2) {
-                    const day = dateParts[0].trim();
-                    const month = dateParts[1].trim();
-                    const postYear = year || new Date().getFullYear();
-                    
-                    // Format as DEC-22-2025
-                    document.getElementById('post-date').textContent = `${month}-${day}-${postYear}`;
-                } else {
-                    // Fallback: try to match without newline (e.g., "22DEC")
-                    const match = date.match(/^(\d+)([A-Z]+)$/);
-                    if (match) {
-                        const day = match[1];
-                        const month = match[2];
-                        const postYear = year || new Date().getFullYear();
-                        document.getElementById('post-date').textContent = `${month}-${day}-${postYear}`;
-                    } else {
-                        document.getElementById('post-date').textContent = date;
-                    }
-                }
-            }
-
-            // Update post content with the full content from the blog
             if (displayContent && contentBody) {
                 contentBody.innerHTML = displayContent;
-            } else if (contentBody) {
-                // Show fallback message if no content is provided
-                contentBody.innerHTML = '<p>No content available for this post.</p>';
             }
+
+            // Format and display date
+            const date = new Date(postData.date);
+            const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+            const month = months[date.getMonth()];
+            const day = String(date.getDate()).padStart(2, '0');
+            const year = date.getFullYear();
+            document.getElementById('post-date').textContent = `${month}-${day}-${year}`;
 
             // Handle language toggle button
             const languageToggleButton = document.getElementById('language-toggle-button');
@@ -180,13 +139,17 @@
     <main>
         <div class="blog-container">
             <div class="blog-header">
-                <h1 class="blog-title" id="post-title">Post Title</h1>
-                <p class="blog-subtitle" id="post-date">December 22, 2024</p>
+                <h1 class="blog-title" id="post-title">The first post that I've created</h1>
+                <p class="blog-subtitle" id="post-date">Loading...</p>
             </div>
             <div class="blog-content">
                 <article class="post-article">
                     <div class="post-content-body">
-                        <!-- Content will be loaded dynamically from URL parameters -->
+                        <p>In this article, I want to dive deeper into the personal experiences that have shaped my perspective on user experience design. The excerpt above touches on the surface, but there's so much more to explore.</p>
+<p>Throughout my career, I've encountered numerous situations where the user experience fell short of expectations. These experiences have taught me valuable lessons about what truly matters in design.</p><h2>Key Insights</h2>
+<p>One of the most important realizations I've had is that user experience isn't just about the interface—it's about the entire ecosystem surrounding the user's journey.</p>
+<p>This includes their emotional state, the context of their environment, the tasks they're trying to accomplish, and the broader system they're interacting with.</p><h2>Moving Forward</h2>
+<p>Understanding these interconnected elements is crucial for creating truly meaningful experiences. It's not enough to focus on individual touchpoints; we need to consider the holistic user journey.</p>
                     </div>
                 </article>
             </div>
