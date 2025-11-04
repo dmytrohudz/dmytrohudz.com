@@ -277,6 +277,20 @@ function buildPosts() {
         }
     });
     
+    // Clean up deleted posts - remove blog directories that no longer have markdown files
+    const currentSlugs = new Set(posts.map(post => post.slug));
+    const blogDirs = fs.readdirSync(blogDir, { withFileTypes: true })
+        .filter(dirent => dirent.isDirectory())
+        .map(dirent => dirent.name);
+    
+    blogDirs.forEach(dir => {
+        if (!currentSlugs.has(dir)) {
+            const dirPath = path.join(blogDir, dir);
+            fs.rmSync(dirPath, { recursive: true, force: true });
+            console.log(`Removed deleted post: ${dirPath}`);
+        }
+    });
+    
     // Sort by date (newest first)
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
     
