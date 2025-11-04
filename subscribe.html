@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="content-language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe — Dmytro Hudz</title>
+    <meta name="description" content="Subscribe to get updates and new posts."/>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+    <script src="js/script.js" defer></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/meta/favicon-16x16.png">
+    <link rel="manifest" href="assets/meta/site.webmanifest">
+    <meta property="og:image" content="https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1715016023/open-graph_s0lp27.jpg">
+    <meta name="twitter:image" content="https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1715016023/open-graph_s0lp27.jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var back = document.getElementById('back-link');
+            if (back) {
+                back.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (document.referrer && document.referrer.indexOf(location.host) !== -1) {
+                        history.back();
+                    } else {
+                        window.location.href = '/index.html';
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        // Email validation function
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('subscribe-form');
+            const emailInput = document.getElementById('email-input');
+            const submitButton = document.getElementById('submit-button');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+
+            // Real-time validation
+            emailInput.addEventListener('input', function () {
+                const email = emailInput.value.trim();
+                
+                // Remove error state when user starts typing
+                emailInput.classList.remove('error');
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+                
+                // Enable/disable button based on input
+                if (email.length > 0) {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('disabled');
+                } else {
+                    submitButton.disabled = true;
+                    submitButton.classList.add('disabled');
+                }
+            });
+
+            // Form submission
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                
+                const email = emailInput.value.trim();
+                
+                // Validate email
+                if (!email) {
+                    showError('Please enter your email address.');
+                    return;
+                }
+                
+                if (!validateEmail(email)) {
+                    showError('Please enter a valid email address.');
+                    return;
+                }
+                
+                // Disable button and show loading state
+                submitButton.disabled = true;
+                submitButton.classList.add('loading');
+                const originalText = submitButton.textContent;
+                submitButton.textContent = 'subscribing...';
+                
+                try {
+                    // Call the serverless function
+                    const response = await fetch('/api/subscribe', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email: email })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        // Success
+                        showSuccess('Successfully subscribed! Check your email for confirmation.');
+                        emailInput.value = '';
+                        submitButton.disabled = true;
+                        submitButton.classList.add('disabled');
+                    } else {
+                        // Error from API
+                        showError(data.error || 'Something went wrong. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Subscription error:', error);
+                    showError('Network error. Please check your connection and try again.');
+                } finally {
+                    // Reset button state
+                    submitButton.classList.remove('loading');
+                    submitButton.textContent = originalText;
+                    if (emailInput.value.trim()) {
+                        submitButton.disabled = false;
+                        submitButton.classList.remove('disabled');
+                    }
+                }
+            });
+
+            function showError(message) {
+                emailInput.classList.add('error');
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            }
+
+            function showSuccess(message) {
+                emailInput.classList.remove('error');
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+            }
+        });
+    </script>
+</head>
+<body class="blog-page subscribe-page">
+    <div class="noise-overlay"></div>
+    <main>
+        <div class="blog-container subscribe-container">
+            <div class="blog-header">
+                <h1 class="blog-title">Subscribe</h1>
+                <p class="blog-subtitle">Get notified when I publish new posts and updates.</p>
+            </div>
+            <div class="subscribe-content">
+                <form id="subscribe-form" class="subscribe-form">
+                    <label for="email-input" class="email-label">Email</label>
+                    <div class="subscribe-input-wrapper">
+                        <input 
+                            type="email" 
+                            id="email-input" 
+                            class="subscribe-input" 
+                            placeholder="name@example.com"
+                            autocomplete="email"
+                            required
+                        />
+                        <button 
+                            type="submit" 
+                            id="submit-button" 
+                            class="subscribe-button disabled" 
+                            disabled
+                        >
+                            subscribe
+                        </button>
+                    </div>
+                    <div id="error-message" class="message error-message"></div>
+                    <div id="success-message" class="message success-message"></div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-buttons">
+            <a href="/index.html" id="back-link" class="button tertiary">
+                <svg class="svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.2045 3.70402C14.6438 3.26468 15.357 3.26468 15.7963 3.70402C16.2356 4.14336 16.2356 4.85647 15.7963 5.29581L9.0922 11.9999L15.7963 18.704C16.2356 19.1434 16.2356 19.8565 15.7963 20.2958C15.357 20.7352 14.6438 20.7352 14.2045 20.2958L6.7045 12.7958C6.26517 12.3565 6.26517 11.6434 6.7045 11.204L14.2045 3.70402Z" fill="white"/>
+                </svg>                        
+                back                
+            </a>
+            <a href="/blog.html" class="button tertiary">blog</a>
+        </div>
+    </footer>
+</body>
+</html>
+
+

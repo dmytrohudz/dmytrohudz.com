@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="content-language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Title — Dmytro Hudz</title>
+    <meta name="description" content="Design, product, and principles."/>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+    <script src="js/script.js" defer></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/meta/favicon-16x16.png">
+    <link rel="manifest" href="assets/meta/site.webmanifest">
+    <meta property="og:image" content="https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1715016023/open-graph_s0lp27.jpg">
+    <meta name="twitter:image" content="https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1715016023/open-graph_s0lp27.jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
+    <script>
+        // Function to truncate content for excerpt
+        function truncateContent(content, maxLength = 150) {
+            // Remove HTML tags for text-only truncation
+            const textContent = content.replace(/<[^>]*>/g, '');
+            
+            if (textContent.length <= maxLength) {
+                return textContent;
+            }
+            
+            // Find the last complete word within the limit
+            const truncated = textContent.substring(0, maxLength);
+            const lastSpaceIndex = truncated.lastIndexOf(' ');
+            
+            if (lastSpaceIndex > 0) {
+                return truncated.substring(0, lastSpaceIndex) + '...';
+            }
+            
+            return truncated + '...';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Handle back navigation
+            var back = document.getElementById('back-link');
+            if (back) {
+                back.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (document.referrer && document.referrer.indexOf(location.host) !== -1) {
+                        history.back();
+                    } else {
+                        window.location.href = '/blog.html';
+                    }
+                });
+            }
+
+            // Parse URL parameters and populate post content
+            const urlParams = new URLSearchParams(window.location.search);
+            const title = urlParams.get('title');
+            const date = urlParams.get('date');
+            const year = urlParams.get('year');
+            const content = urlParams.get('content');
+
+            if (title) {
+                document.getElementById('post-title').textContent = title;
+                document.title = `${title} — Dmytro Hudz`;
+            }
+
+            if (date) {
+                // Parse the date format (e.g., "22\nDEC" -> "DEC-22-2025")
+                // The date comes as "22\nDEC" from the blog page
+                const dateParts = date.split('\n');
+                if (dateParts.length === 2) {
+                    const day = dateParts[0].trim();
+                    const month = dateParts[1].trim();
+                    const postYear = year || new Date().getFullYear();
+                    
+                    // Format as DEC-22-2025
+                    document.getElementById('post-date').textContent = `${month}-${day}-${postYear}`;
+                } else {
+                    // Fallback: try to match without newline (e.g., "22DEC")
+                    const match = date.match(/^(\d+)([A-Z]+)$/);
+                    if (match) {
+                        const day = match[1];
+                        const month = match[2];
+                        const postYear = year || new Date().getFullYear();
+                        document.getElementById('post-date').textContent = `${month}-${day}-${postYear}`;
+                    } else {
+                        document.getElementById('post-date').textContent = date;
+                    }
+                }
+            }
+
+            // Update post content with the full content from the blog
+            const contentBody = document.querySelector('.post-content-body');
+            if (content && contentBody) {
+                contentBody.innerHTML = content;
+            } else if (contentBody) {
+                // Show fallback message if no content is provided
+                contentBody.innerHTML = '<p>No content available for this post.</p>';
+            }
+        });
+    </script>
+</head>
+<body class="blog-page post-page">
+    <div class="noise-overlay"></div>
+    <main>
+        <div class="blog-container">
+            <div class="blog-header">
+                <h1 class="blog-title" id="post-title">Post Title</h1>
+                <p class="blog-subtitle" id="post-date">December 22, 2024</p>
+            </div>
+            <div class="blog-content">
+                <article class="post-article">
+                    <div class="post-content-body">
+                        <!-- Content will be loaded dynamically from URL parameters -->
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-buttons">
+            <a href="/blog.html" class="button tertiary" id="back-link">
+                <svg class="svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.2045 3.70402C14.6438 3.26468 15.357 3.26468 15.7963 3.70402C16.2356 4.14336 16.2356 4.85647 15.7963 5.29581L9.0922 11.9999L15.7963 18.704C16.2356 19.1434 16.2356 19.8565 15.7963 20.2958C15.357 20.7352 14.6438 20.7352 14.2045 20.2958L6.7045 12.7958C6.26517 12.3565 6.26517 11.6434 6.7045 11.204L14.2045 3.70402Z" fill="white"/>
+                </svg>                        
+                back                
+            </a>
+            <a href="#" class="button tertiary email-button">copy link</a>
+        </div>
+    </footer>
+</body>
+</html>

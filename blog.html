@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="content-language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Dmytro Hudz</title>
+    <meta name="description" content="Design, product, and principles."/>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+    <script src="js/script.js" defer></script>
+    <script src="js/posts-loader.js" defer></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/meta/favicon-16x16.png">
+    <link rel="manifest" href="assets/meta/site.webmanifest">
+    <meta property="og:image" content="https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1715016023/open-graph_s0lp27.jpg">
+    <meta name="twitter:image" content="https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1715016023/open-graph_s0lp27.jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var back = document.getElementById('back-link');
+            if (back) {
+                back.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (document.referrer && document.referrer.indexOf(location.host) !== -1) {
+                        history.back();
+                    } else {
+                        window.location.href = '/index.html';
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        function syncExcerptWidths() {
+          document.querySelectorAll('.post-item').forEach(card => {
+            const title = card.querySelector('.post-title');
+            if (!title) return;
+      
+            // Measure the *actual wrapped* width of the title
+            const w = Math.ceil(title.getBoundingClientRect().width);
+            // Set a CSS custom property on the card
+            card.style.setProperty('--title-width', w + 'px');
+          });
+        }
+      
+        // Run on page load, resize, and when fonts settle
+        window.addEventListener('load', syncExcerptWidths);
+        window.addEventListener('resize', syncExcerptWidths);
+      
+        // Keep it accurate if content or fonts reflow
+        const ro = new ResizeObserver(syncExcerptWidths);
+        document.querySelectorAll('.post-title').forEach(n => ro.observe(n));
+      </script>
+    <script>
+        // Function to truncate content for excerpt
+        function truncateContent(content, maxLength = 150) {
+            // Remove HTML tags for text-only truncation
+            const textContent = content.replace(/<[^>]*>/g, '');
+            
+            if (textContent.length <= maxLength) {
+                return textContent;
+            }
+            
+            // Find the last complete word within the limit
+            const truncated = textContent.substring(0, maxLength);
+            const lastSpaceIndex = truncated.lastIndexOf(' ');
+            
+            if (lastSpaceIndex > 0) {
+                return truncated.substring(0, lastSpaceIndex) + '...';
+            }
+            
+            return truncated + '...';
+        }
+
+        // Load and display posts dynamically
+        document.addEventListener('DOMContentLoaded', async function () {
+            try {
+                // Load posts from the posts loader
+                const posts = await postsLoader.loadPosts();
+                const blogContent = document.querySelector('.blog-content');
+                
+                if (blogContent && posts.length > 0) {
+                    // Clear existing content (including the static blog-year)
+                    blogContent.innerHTML = '';
+                    
+                    // Group posts by year
+                    const postsByYear = groupPostsByYear(posts);
+                    
+                    // Create year groups dynamically
+                    Object.keys(postsByYear).sort((a, b) => b - a).forEach(year => {
+                        const yearGroup = createYearGroup(year, postsByYear[year]);
+                        blogContent.appendChild(yearGroup);
+                    });
+                    
+                    // Ensure excerpts sync to title width immediately after render
+                    try {
+                        // Observe newly added titles so reflows keep widths accurate
+                        if (window.ResizeObserver) {
+                            const roDynamic = new ResizeObserver(syncExcerptWidths);
+                            blogContent.querySelectorAll('.post-title').forEach(n => roDynamic.observe(n));
+                        }
+                        // Run an immediate sync without waiting for resize
+                        syncExcerptWidths();
+                    } catch (_) {}
+
+                    // Add click handlers to dynamically created posts
+                    addClickHandlers();
+                }
+            } catch (error) {
+                console.error('Error loading posts:', error);
+            }
+        });
+
+        function groupPostsByYear(posts) {
+            const grouped = {};
+            posts.forEach(post => {
+                const year = new Date(post.date).getFullYear();
+                if (!grouped[year]) {
+                    grouped[year] = [];
+                }
+                grouped[year].push(post);
+            });
+            return grouped;
+        }
+
+        function createYearGroup(year, posts) {
+            const yearGroup = document.createElement('div');
+            yearGroup.className = 'year-group';
+            
+            // Create year label
+            const yearLabel = document.createElement('p');
+            yearLabel.className = 'blog-year';
+            yearLabel.textContent = `${year}-LOGS`;
+            
+            // Create post list
+            const postList = document.createElement('div');
+            postList.className = 'post-list';
+            
+            // Add posts to the list
+            posts.forEach(post => {
+                const postElement = createPostElement(post);
+                postList.appendChild(postElement);
+            });
+            
+            yearGroup.appendChild(yearLabel);
+            yearGroup.appendChild(postList);
+            
+            return yearGroup;
+        }
+
+        function createPostElement(post) {
+            const article = document.createElement('article');
+            article.className = 'post-item';
+            article.setAttribute('data-post-slug', post.slug);
+            
+            const formattedDate = postsLoader.formatDate(post.date);
+            
+            article.innerHTML = `
+                <div class="post-date"><div>${formattedDate}</div></div>
+                <div class="post-content">
+                    <h2 class="post-title">${post.title}</h2>
+                    <p class="post-excerpt">${post.excerpt}</p>
+                </div>
+                <div class="post-full-content" style="display: none;">
+                    ${post.content}
+                </div>
+            `;
+            
+            return article;
+        }
+
+        function addClickHandlers() {
+            const postItems = document.querySelectorAll('.post-item');
+            postItems.forEach(item => {
+                // The excerpt is already set from the markdown file, no need to override it
+                
+                item.addEventListener('click', function () {
+                    // Get post data from the clicked item
+                    const title = this.querySelector('.post-title').textContent;
+                    const date = this.querySelector('.post-date').textContent;
+                    const fullContent = this.querySelector('.post-full-content') ? this.querySelector('.post-full-content').innerHTML : '';
+                    const slug = this.getAttribute('data-post-slug');
+                    
+                    // Get the year from the closest year group
+                    const yearGroup = this.closest('.year-group');
+                    const blogYearElement = yearGroup ? yearGroup.querySelector('.blog-year') : null;
+                    const year = blogYearElement ? blogYearElement.textContent.split('-')[0] : new Date().getFullYear();
+                    
+                    // Create URL parameters to pass data to post page
+                    const params = new URLSearchParams({
+                        title: title,
+                        date: date,
+                        year: year,
+                        content: fullContent,
+                        slug: slug
+                    });
+                    
+                    // Navigate to post page with parameters
+                    window.location.href = `post.html?${params.toString()}`;
+                });
+            });
+        }
+    </script>
+    </head>
+<body class="blog-page">
+    <div class="noise-overlay"></div>
+    <main>
+        <div class="blog-container">
+            <div class="blog-header">
+            <h1 class="blog-title">Blog</h1>
+                <p class="blog-subtitle">Reflections, stories, and half-formed ideas.</p>
+            </div>
+            <div class="blog-content">
+                <!-- Year groups and posts will be loaded dynamically here -->
+            </div>
+    </main>
+    <footer>
+        <div class="footer-buttons">
+            <a href="/index.html" class="button tertiary">
+                <svg class="svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.2045 3.70402C14.6438 3.26468 15.357 3.26468 15.7963 3.70402C16.2356 4.14336 16.2356 4.85647 15.7963 5.29581L9.0922 11.9999L15.7963 18.704C16.2356 19.1434 16.2356 19.8565 15.7963 20.2958C15.357 20.7352 14.6438 20.7352 14.2045 20.2958L6.7045 12.7958C6.26517 12.3565 6.26517 11.6434 6.7045 11.204L14.2045 3.70402Z" fill="white"/>
+                    </svg>                        
+                back                
+                </a>
+            <a href="/subscribe.html" class="button tertiary">subscribe</a>
+        </div>
+    </footer>
+    </body>
+    </html>
+
+

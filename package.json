@@ -1,0 +1,17 @@
+{
+  "name": "dmytrohudz-blog",
+  "version": "1.0.0",
+  "description": "Personal blog with Decap CMS",
+  "scripts": {
+    "build-posts": "node build-posts.js",
+    "dev": "python -m http.server 8000",
+    "build": "npm run build-posts"
+  },
+  "devDependencies": {},
+  "keywords": ["blog", "cms", "decap", "cloudflare"],
+  "author": "Dmytro Hudz",
+  "license": "MIT"
+}
+
+
+

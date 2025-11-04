@@ -1,7 +1,10 @@
-var animation = lottie.loadAnimation({
-    container: document.getElementById('user-avatar'), // the dom element
-    renderer: 'svg', // rendering mode
-    loop: true,
-    autoplay: true,
-    path: 'assets/animations/dmytrohudz.json', // the path to the animation json
-});
+var avatarContainer = document.getElementById('user-avatar');
+if (avatarContainer && window.lottie) {
+    var animation = lottie.loadAnimation({
+        container: avatarContainer,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'assets/animations/dmytrohudz.json'
+    });
+}

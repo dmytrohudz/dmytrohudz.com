@@ -17,6 +17,15 @@ a {
     font-style: normal;
 }
 
+/* Geist Mono utility and defaults for code blocks */
+.mono {
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+code, pre, kbd, samp {
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
 .be-vietnam-pro-thin {
     font-family: "Be Vietnam Pro", sans-serif;
     font-weight: 100;
@@ -145,7 +154,7 @@ body {
     position: fixed;
     top: -12.5%; 
     left: -12.5%;
-    z-index: 1;
+    z-index: 100;
     width: 125%; 
     height: 125%;
     background: url('/assets/animations/noise.png') repeat center center;
@@ -169,10 +178,14 @@ body {
     --spring-extra-dark: #004724;
     --spring-trp-5: rgba(0, 255, 127, 0.05);
     --white-trp-5: rgba(255, 255, 255, 0.05);
+    --white-trp-10: rgba(255, 255, 255, 0.1);
     --white-trp-30: rgba(255, 255, 255, 0.3);
     --white: #FFFFFF;
     --white-text: #F0F0F0;
-    --grey-text: #808080;
+    --grey-text: #BFBFBF;
+    --grey-text-hover: #FFFFFF;
+    --border-transparent: rgba(255, 255, 255, 0);
+    --grey-background: #171717;
     --background: #0F0F0F;
 }
 
@@ -189,7 +202,12 @@ header, footer, main {
     align-items: center;
 }
 
-/* JSON */
+.blog-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 #user-avatar {
     width: 72px;
     height: 72px;
@@ -318,6 +336,8 @@ main {
 
 .tertiary {
     background-color: var(--white-trp-5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .tertiary:hover {
@@ -333,6 +353,601 @@ main {
 
 .tertiary:hover .svg {
     fill: var(--white);
+}
+
+.blog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding-bottom: 120px; /* Space for pinned footer */
+    width: 100%;
+    max-width: 100%;
+    align-self: stretch;
+}
+
+.blog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.blog-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-page main {
+    flex: 1;
+    position: relative;
+    align-self: stretch;
+    max-inline-size: none;
+}
+
+/* Footer container: create a stacking context and positioning */
+.blog-page footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* important: make a new stacking context so z-index works predictably */
+    isolation: isolate;
+    /* spacing */
+    padding: 40px 0 48px;
+    margin: 0;
+    /* keep the footer above the page but below floating UI if any */
+    z-index: 10; /* was 0 */
+  }
+    /* The visual overlay that actually blurs & fades the content behind */
+  .blog-page footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* the blur lives here, not on the footer element */
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    /* optional: a faint tint so the blur is visible on Safari */
+    background: rgba(0, 0, 0, 0.25);
+    /* your progressive fade */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,1) 65%,
+      rgba(0,0,0,1) 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,1) 65%,
+      rgba(0,0,0,1) 100%
+    );
+    /* sit behind the content inside the footer */
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  /* Your buttons/content sit above the overlay */
+  .blog-page .footer-buttons {
+    position: relative;
+    z-index: 1;         /* <- crucial: above ::before */
+    padding: 0 64px;
+    max-width: 100%;
+  }
+  
+  /* optional clean edge above the footer */
+  .blog-page .footer-buttons::before {
+    content: '';
+    position: absolute;
+    top: -24px;
+    left: 0;
+    right: 0;
+    height: 24px;
+    pointer-events: none;
+  }
+  
+  /* If you used blending anywhere on the buttons, lock them to normal */
+  .blog-page .footer-buttons,
+  .blog-page .footer-buttons * {
+    mix-blend-mode: normal; /* safety if you experimented with blends */
+  }
+
+.blog-page .footer-buttons .button .tertiary {
+    gap: 8px;
+}
+
+.blog-title {
+    color: var(--white-text);
+    font-family: Geist;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 48px;
+    letter-spacing: -0.8px;
+}
+
+.blog-subtitle {
+    color: var(--grey-text);
+    font-family: Geist;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: -0.24px;
+}
+
+.blog-year {
+    padding-left: 20px;
+    color: var(--white-trp-30);
+    font-family: Geist Mono;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.7px;
+    margin-bottom: 0;
+}
+
+.year-group {
+    margin-bottom: 24px;
+}
+
+.year-group:last-child {
+    margin-bottom: 0;
+}
+
+.year-group .post-list {
+    margin-top: 24px;
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    gap: 20px;
+    padding-top: 24px;
+    padding-left: 12px;
+}
+
+.post-item {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: 24px;
+    border-radius: 23px;
+    align-items: center;
+    width: 100%;
+}
+
+.post-item:hover {
+    cursor: pointer;
+}
+
+.post-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 83px;
+    height: 83px;
+    border-radius: 21px;
+    background: var(--white-trp-5);
+    color: var(--grey-text);
+    font-family: Geist Mono;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.post-item:hover .post-date {
+    background: var(--white-trp-10);
+    color: var(--white);
+    transition: background 0.6s ease;
+}
+
+.post-item:hover .post-title {
+    color: var(--spring);
+    transition: color 0.6s ease;
+}
+
+.post-item:hover .post-excerpt {
+    color: var(--grey-text);
+    transition: color 0.6s ease;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-inline-size: 100%;
+    min-width: 0;
+}
+
+.post-title {
+    color: var(--white-text);
+    font-family: Geist;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: -0.2px;
+    display: inline-block;      /* makes width depend on text */
+    width: fit-content;         /* shrink-wrap to text */
+    max-inline-size: var(--title-width, 100%);
+    white-space: normal;        /* allow wrapping when needed */
+    padding-right: 24px;
+    position: relative;
+}
+
+/* Hover icon for post titles */
+.post-title::after {
+    content: "";
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translateY(-50%) translateX(4px) scale(0.92);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    /* color inherits from the title (including your hover color) */
+    background: currentColor;
+    /* use mask so the icon adopts currentColor */
+    -webkit-mask: url('/assets/icons/arrowright.svg') no-repeat center / contain;
+    mask: url('/assets/icons/arrowright.svg') no-repeat center / contain;
+}
+
+/* Reveal on hover (mouse) or focus (keyboard); also when the whole row is hovered */
+.post-title:hover::after,
+.post-title:focus-visible::after,
+.post-item:hover .post-title::after {
+    opacity: 0.95;
+    transform: translateY(-50%) translateX(0) scale(1);
+    filter: blur(0px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .post-title::after {
+        transition: opacity 0.01s linear;
+        transform: translateY(-50%);
+    }
+}
+
+.post-excerpt {
+    color: var(--white-trp-30);
+    font-family: Geist;
+    font-size: 14px;
+    line-height: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;          /* 2 lines */
+    overflow: hidden;
+    /* Grow to match title width; desktop min width applied in media query */
+    max-inline-size: var(--title-width, 100%);
+}
+/* Post Page Styles */
+.post-article {
+    width: 100%;
+    max-width: 100%;
+}
+
+.post-content-body {
+    color: var(--white-text, #F0F0F0);
+    font-family: Geist;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: -0.18px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 60ch; /* 60 characters */
+    margin: 0 auto; /* Center the content */
+    text-align: left;
+}
+
+.post-content-body p {
+    margin: 0;
+}
+
+.post-content-body h2 {
+    color: var(--white-text, #F0F0F0);
+    font-family: Geist;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: -0.24px;
+    margin: 0;
+    margin-top: 8px;
+}
+
+.post-content-body h3 {
+    color: var(--white-text, #F0F0F0);
+    font-family: Geist;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    margin-top: 8px;
+}
+
+.post-content-body ul,
+.post-content-body ol {
+    margin: 0;
+    padding-left: 24px;
+    color: var(--white-text, #F0F0F0);
+    font-family: Geist;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: -0.18px;
+}
+
+.post-content-body li {
+    margin-bottom: 8px;
+}
+
+.post-content-body blockquote {
+    margin: 0;
+    padding: 24px;
+    border-left: 4px solid var(--spring);
+    background: var(--white-trp-5);
+    border-radius: 12px;
+    color: var(--white-text, #F0F0F0);
+    font-family: Geist;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: -0.18px;
+    font-style: italic;
+}
+
+.post-content-body code {
+    background: var(--white-trp-5);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 16px;
+}
+
+.post-content-body pre {
+    background: var(--white-trp-5);
+    padding: 24px;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.post-content-body pre code {
+    background: none;
+    padding: 0;
+}
+
+.post-content-body a {
+    color: var(--spring);
+    text-decoration: underline;
+    text-decoration-color: var(--spring);
+    text-underline-offset: 4px;
+    transition: color 0.3s ease;
+}
+
+.post-content-body a:hover {
+    color: var(--spring-extra-light);
+}
+
+.post-content-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 24px 0;
+}
+
+.post-content-body hr {
+    border: none;
+    height: 1px;
+    background: var(--white-trp-10);
+    margin: 32px 0;
+}
+
+.post-page .blog-subtitle {
+    color: var(--grey-text);
+    font-family: Geist Mono;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+
+/* Subscribe Page Styles */
+.subscribe-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.subscribe-page main {
+    flex: 1;
+    position: relative;
+    align-self: stretch;
+    max-inline-size: none;
+}
+
+.subscribe-container {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding-bottom: 120px;
+    width: 100%;
+    max-width: 100%;
+    align-self: stretch;
+}
+
+.subscribe-content {
+    width: 100%;
+    max-width: 100%;
+}
+
+.subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.email-label {
+    color: var(--white-text);
+    font-family: Geist;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 48px;
+    letter-spacing: -0.8px;
+}
+
+.subscribe-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    background: var(--grey-background);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.subscribe-input-wrapper:focus-within {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.subscribe-input-wrapper.error {
+    border-color: #ff4444;
+}
+
+.subscribe-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--white-text);
+    font-family: Geist;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: -0.24px;
+    padding: 24px 32px;
+    min-height: 80px;
+}
+
+.subscribe-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.subscribe-input.error {
+    color: #ff4444;
+}
+
+.subscribe-button {
+    flex-shrink: 0;
+    background-color: var(--spring);
+    color: var(--background);
+    font-family: Geist;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -0.22px;
+    border: none;
+    border-radius: 23px;
+    padding: 28px 56px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.subscribe-button:hover:not(:disabled):not(.disabled) {
+    background-color: var(--spring-extra-light);
+    color: var(--spring-extra-dark);
+    box-shadow: 0px 2px 40px 1px rgba(107, 251, 104, 0.20), 0px 5px 36px 0px #67FB64 inset;
+}
+
+.subscribe-button.disabled,
+.subscribe-button:disabled {
+    background-color: rgba(0, 255, 127, 0.3);
+    color: rgba(15, 15, 15, 0.5);
+    cursor: not-allowed;
+}
+
+.subscribe-button.loading {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.message {
+    display: none;
+    font-family: Geist;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.18px;
+    padding: 16px 24px;
+    border-radius: 16px;
+    margin-top: 8px;
+}
+
+.error-message {
+    color: #ff4444;
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid rgba(255, 68, 68, 0.3);
+}
+
+.success-message {
+    color: var(--spring);
+    background: var(--spring-trp-5);
+    border: 1px solid rgba(0, 255, 127, 0.3);
+}
+
+.subscribe-page footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    isolation: isolate;
+    padding: 40px 0 48px;
+    margin: 0;
+    z-index: 10;
+}
+
+.subscribe-page footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    background: rgba(0, 0, 0, 0.25);
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,1) 65%,
+      rgba(0,0,0,1) 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,1) 65%,
+      rgba(0,0,0,1) 100%
+    );
+    z-index: 0;
+    pointer-events: none;
+}
+
+.subscribe-page .footer-buttons {
+    position: relative;
+    z-index: 1;
+    padding: 0 64px;
+    max-width: 100%;
 }
 
 /* Breakpoints */
@@ -416,24 +1031,24 @@ main {
     }
     
     /* Footer */
-    .footer-buttons {
+    .footer-buttons.index {
         display: grid;
         grid-template-rows: auto auto auto;  /* Creates three rows */
         grid-template-columns: 1fr 1fr;  /* Two columns each of equal width */
         gap: 4px;  /* Space between the buttons */
     }
 
-    .footer-buttons > *:first-child {
+    .footer-buttons.index > *:first-child {
         grid-column: 1 / -1;  /* Makes the first button span the entire row */
     }
 
-    .footer-buttons > *:nth-child(2),
-    .footer-buttons > *:nth-child(3) {
+    .footer-buttons.index > *:nth-child(2),
+    .footer-buttons.index > *:nth-child(3) {
         grid-row: 2;  /* Places the second and third buttons on the second row */
     }
 
-    .footer-buttons > *:nth-child(4),
-    .footer-buttons > *:nth-child(5) {
+    .footer-buttons.index > *:nth-child(4),
+    .footer-buttons.index > *:nth-child(5) {
         grid-row: 3;  /* Places the fourth and fifth buttons on the third row */
     }
     
@@ -469,6 +1084,216 @@ main {
         width: 20px;
         height: 20px;
     }
+
+    .blog-year {
+        font-size: 14px;
+        line-height: 14px;
+        letter-spacing: 0.7px;
+    }
+
+    .blog-title {
+        font-size: 30px;
+        line-height: 42px;
+        letter-spacing: -0.56px;
+    }
+
+    .blog-container {
+        gap: 64px;
+    }
+
+    .blog-subtitle {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .post-list {
+        padding-top: 28px;
+        gap: 32px;
+    }
+    
+    .post-item {
+        grid-template-columns: 48px 1fr;
+        padding: 0px 0px;
+        border-radius: 0px;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .post-item:hover {
+        background: none;
+    }
+
+    .post-title {
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: -0.18px;
+        padding-top: 4px;
+    }
+
+    .post-excerpt {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: -0.14px;
+    }
+
+    .post-date {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+    }
+    
+    .blog-page footer {
+        padding: 16px 0 24px;
+    }
+
+    .blog-page footer::before {
+        top: -64px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+    
+    .blog-page .footer-buttons {
+        padding: 0 24px;
+        gap: 4px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+
+    .blog-page .footer-buttons .button {
+        width: 100%;
+        gap: 6px;
+    }
+
+    .post-title::after {
+        display: none;
+        content: '';
+        opacity: 0 !important;
+        transform: translateY(-50%) translateX(4px) scale(0.92) !important;
+      }
+    
+      /* Prevent revealing the arrow via hover on containers/titles */
+      .post-title:hover::after,
+      .post-item:hover .post-title::after {
+        display: none !important;
+        opacity: 0 !important;
+      }
+
+    /* Post content mobile styles */
+    .post-content-body {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
+        gap: 20px;
+    }
+
+    .post-content-body h2 {
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: -0.2px;
+    }
+
+    .post-content-body h3 {
+        font-size: 18px;
+        line-height: 26px;
+        letter-spacing: -0.18px;
+    }
+
+    .post-content-body ul,
+    .post-content-body ol {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
+        padding-left: 20px;
+    }
+
+    .post-content-body blockquote {
+        padding: 20px;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
+    }
+
+    .post-content-body code {
+        font-size: 14px;
+    }
+
+    .post-content-body pre {
+        padding: 20px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .post-content-body img {
+        margin: 20px 0;
+    }
+
+    .post-content-body hr {
+        margin: 24px 0;
+    }
+
+    /* Subscribe page mobile styles */
+    .subscribe-container {
+        gap: 48px;
+        padding-bottom: 100px;
+    }
+
+    .email-label {
+        font-size: 30px;
+        line-height: 42px;
+        letter-spacing: -0.56px;
+    }
+
+    .subscribe-input-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px;
+        border-radius: 24px;
+    }
+
+    .subscribe-input {
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: -0.18px;
+        padding: 20px 24px;
+        min-height: 64px;
+    }
+
+    .subscribe-button {
+        width: 100%;
+        font-size: 18px;
+        line-height: 18px;
+        letter-spacing: -0.18px;
+        padding: 24px 32px;
+        border-radius: 17px;
+    }
+
+    .message {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
+        padding: 12px 20px;
+        border-radius: 12px;
+    }
+
+    .subscribe-page footer {
+        padding: 16px 0 24px;
+    }
+
+    .subscribe-page .footer-buttons {
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+    }
+
+    .subscribe-page .footer-buttons .button {
+        width: 100%;
+    }
+
 }
 
 @media (min-width: 412px) and (max-width: 432px) {
@@ -480,6 +1305,188 @@ main {
     .about-text {
         margin-left: 2px;
         margin-right: 2px;
+    }
+}
+
+@media (min-width: 412px) and (max-width: 680px) {
+    .blog-year {
+        font-size: 14px;
+        line-height: 14px;
+        letter-spacing: 0.7px;
+    }
+
+    .blog-title {
+        font-size: 30px;
+        line-height: 42px;
+        letter-spacing: -0.56px;
+    }
+
+    .blog-container {
+        gap: 64px;
+    }
+
+    .blog-subtitle {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .post-list {
+        padding-top: 28px;
+        gap: 40px;
+    }
+    
+    .post-item {
+        grid-template-columns: 48px 1fr;
+        padding: 0px 0px;
+        border-radius: 0px;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .post-item:hover {
+        background: none;
+    }
+
+    .post-title {
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: -0.18px;
+        padding-top: 4px;
+    }
+
+    .post-excerpt {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: -0.14px;
+    }
+
+    .post-date {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+    }
+    
+    .blog-page footer {
+        padding: 16px 0 24px;
+    }
+
+    .blog-page footer::before {
+        top: -64px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+
+    .post-title::after {
+        display: none;
+        content: '';
+        opacity: 0 !important;
+        transform: translateY(-50%) translateX(4px) scale(0.92) !important;
+      }
+    
+      /* Prevent revealing the arrow via hover on containers/titles */
+      .post-title:hover::after,
+      .post-item:hover .post-title::after {
+        display: none !important;
+        opacity: 0 !important;
+      }
+
+    /* Post content mobile styles */
+    .post-content-body {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
+        gap: 20px;
+    }
+
+    .post-content-body h2 {
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: -0.2px;
+    }
+
+    .post-content-body h3 {
+        font-size: 18px;
+        line-height: 26px;
+        letter-spacing: -0.18px;
+    }
+
+    .post-content-body ul,
+    .post-content-body ol {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
+        padding-left: 20px;
+    }
+
+    .post-content-body blockquote {
+        padding: 20px;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
+    }
+
+    .post-content-body code {
+        font-size: 14px;
+    }
+
+    .post-content-body pre {
+        padding: 20px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .post-content-body img {
+        margin: 20px 0;
+    }
+
+    .post-content-body hr {
+        margin: 24px 0;
+    }
+
+    /* Subscribe page mobile/tablet styles */
+    .subscribe-container {
+        gap: 48px;
+        padding-bottom: 100px;
+    }
+
+    .email-label {
+        font-size: 30px;
+        line-height: 42px;
+        letter-spacing: -0.56px;
+    }
+
+    .subscribe-input-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px;
+        border-radius: 24px;
+    }
+
+    .subscribe-input {
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: -0.18px;
+        padding: 20px 24px;
+        min-height: 64px;
+    }
+
+    .subscribe-button {
+        width: 100%;
+        font-size: 18px;
+        line-height: 18px;
+        letter-spacing: -0.18px;
+        padding: 24px 32px;
+        border-radius: 17px;
+    }
+
+    .message {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
+        padding: 12px 20px;
+        border-radius: 12px;
     }
 }
 
@@ -496,12 +1503,48 @@ main {
     
     .about-text {
         margin-bottom: 32px;
-
-        /* Small+/Heading */
         font-size: 30px;
         line-height: 46px;
         letter-spacing: -0.6px;
     }
+
+    .blog-header {
+        gap: 10px;
+    }
+
+    .blog-title {
+        font-size: 30px;
+        line-height: 46px;
+        letter-spacing: -0.6px;
+    }
+
+    .blog-subtitle {
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: -0.18px;
+    }
+
+    .blog-year {
+        font-size: 14px;
+        line-height: 14px;
+        letter-spacing: 0.7px;
+    }
+    
+    .post-title {
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: -0.18px;
+    }
+
+    .post-excerpt {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: -0.14px;
+        /* Desktop/tablet: at least 412px wide, but allow extending to title width */
+        min-inline-size: 412px;
+        max-inline-size: var(--title-width, 100%);
+    }
+    
     
     /* Buttons */
     .primary {
@@ -527,6 +1570,93 @@ main {
         font-size: 18px;
         line-height: 18px;
         letter-spacing: -0.18px;
+    }
+
+    .blog-page .footer-buttons {
+        padding: 0px 40px;
+    }
+
+    /* Subscribe page tablet styles */
+    .subscribe-container {
+        gap: 64px;
+    }
+
+    .email-label {
+        font-size: 30px;
+        line-height: 46px;
+        letter-spacing: -0.6px;
+    }
+
+    .subscribe-input {
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: -0.2px;
+        padding: 22px 28px;
+        min-height: 72px;
+    }
+
+    .subscribe-button {
+        font-size: 18px;
+        line-height: 18px;
+        letter-spacing: -0.18px;
+        padding: 24px 48px;
+    }
+
+    .subscribe-page .footer-buttons {
+        padding: 0 40px;
+    }
+
+    /* Post content medium styles */
+    .post-content-body {
+        font-size: 17px;
+        line-height: 26px;
+        letter-spacing: -0.17px;
+        gap: 22px;
+    }
+
+    .post-content-body h2 {
+        font-size: 22px;
+        line-height: 30px;
+        letter-spacing: -0.22px;
+    }
+
+    .post-content-body h3 {
+        font-size: 19px;
+        line-height: 27px;
+        letter-spacing: -0.19px;
+    }
+
+    .post-content-body ul,
+    .post-content-body ol {
+        font-size: 17px;
+        line-height: 26px;
+        letter-spacing: -0.17px;
+        padding-left: 22px;
+    }
+
+    .post-content-body blockquote {
+        padding: 22px;
+        font-size: 17px;
+        line-height: 26px;
+        letter-spacing: -0.17px;
+    }
+
+    .post-content-body code {
+        font-size: 15px;
+    }
+
+    .post-content-body pre {
+        padding: 22px;
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .post-content-body img {
+        margin: 22px 0;
+    }
+
+    .post-content-body hr {
+        margin: 28px 0;
     }
 }
 
@@ -615,6 +1745,14 @@ display: none;
     .tertiary .svg {
         width: 36px;
         height: 36px;
+    }
+}
+
+/* Large desktops: ensure excerpt is at least 412px and can expand to title width */
+@media (min-width: 1367px) {
+    .post-excerpt {
+        min-inline-size: 412px;
+        max-inline-size: var(--title-width, 100%);
     }
 }
 
