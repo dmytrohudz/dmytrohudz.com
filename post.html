@@ -98,6 +98,39 @@
                 // Show fallback message if no content is provided
                 contentBody.innerHTML = '<p>No content available for this post.</p>';
             }
+
+            // Handle copy link button
+            const copyLinkButton = document.querySelector('.email-button');
+            if (copyLinkButton) {
+                // Store the original width on page load to prevent button resize
+                const originalWidth = copyLinkButton.offsetWidth;
+                copyLinkButton.style.minWidth = originalWidth + 'px';
+                
+                copyLinkButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Copy current page URL to clipboard
+                    navigator.clipboard.writeText(window.location.href).then(function() {
+                        // Store original text
+                        const originalText = copyLinkButton.textContent;
+                        
+                        // Update button text to show success
+                        copyLinkButton.textContent = 'copied!';
+                        
+                        // Reset button text after 2 seconds
+                        setTimeout(function() {
+                            copyLinkButton.textContent = originalText;
+                        }, 2000);
+                    }).catch(function(err) {
+                        console.error('Failed to copy link: ', err);
+                        // Show error feedback
+                        copyLinkButton.textContent = 'failed to copy';
+                        setTimeout(function() {
+                            copyLinkButton.textContent = 'copy link';
+                        }, 2000);
+                    });
+                });
+            }
         });
     </script>
 </head>
