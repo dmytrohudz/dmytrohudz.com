@@ -368,7 +368,7 @@ main {
 .blog-content {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 40px;
     width: 100%;
 }
 
