@@ -1,7 +1,9 @@
 backend:
   name: github
-  repo: dmytrohudz/dmytrohudz.com # Replace with your GitHub username/repo
+  repo: dmytrohudz/dmytrohudz.com
   branch: main
+  base_url: https://dmytrohudz.com
+  auth_endpoint: /api/auth
 
 media_folder: "assets/images" # Media files will be stored in the repo under assets/images
 public_folder: "/assets/images" # The src attribute for uploaded media will begin with /assets/images
