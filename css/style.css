@@ -1008,7 +1008,7 @@ main {
     }
     
     header, footer, main {
-        padding: 24px 24px;
+        padding: 24px 16px;
     }
 
     /* Header */
@@ -1357,7 +1357,7 @@ main {
 @media (min-width: 412px) and (max-width: 432px) {
 
     header, footer, main {
-        padding: 24px 24px;
+        padding: 24px 16px;
     }
     
     .about-text {
