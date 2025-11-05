@@ -300,7 +300,7 @@ main {
     line-height: 22px;
     letter-spacing: -0.22px;
     color: var(--white-text);
-    gap: 12px;
+    gap: 8px;
 }
 
 .primary {
@@ -378,6 +378,10 @@ main {
     .tertiary:hover .svg {
         fill: var(--white);
     }
+}
+
+.email-button {
+    gap: 12px;
 }
 
 .blog-container {
@@ -691,7 +695,7 @@ main {
     color: var(--white-text, #F0F0F0);
     font-family: Geist;
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 38px;
     letter-spacing: -0.24px;
     margin: 48px 0 8px 0;
@@ -706,7 +710,7 @@ main {
     color: var(--white-text, #F0F0F0);
     font-family: Geist;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 34px;
     letter-spacing: -0.2px;
     margin: 40px 0 8px 0;
@@ -1352,6 +1356,7 @@ main {
 
     .post-content-body h2 {
         font-size: 20px;
+        font-weight: 600;
         line-height: 32px;
         letter-spacing: -0.2px;
         margin: 36px 0 6px 0;
@@ -1359,6 +1364,7 @@ main {
 
     .post-content-body h3 {
         font-size: 18px;
+        font-weight: 500;
         line-height: 28px;
         letter-spacing: -0.18px;
         margin: 32px 0 6px 0;
@@ -1514,6 +1520,7 @@ main {
 
     .post-content-body h2 {
         font-size: 20px;
+        font-weight: 600;
         line-height: 36px;
         letter-spacing: -0.2px;
         margin: 36px 0 6px 0;
@@ -1521,6 +1528,7 @@ main {
 
     .post-content-body h3 {
         font-size: 18px;
+        font-weight: 500;
         line-height: 32px;
         letter-spacing: -0.18px;
         margin: 32px 0 6px 0;
@@ -1739,6 +1747,7 @@ main {
 
     .post-content-body h2 {
         font-size: 22px;
+        font-weight: 600;
         line-height: 38px;
         letter-spacing: -0.22px;
         margin: 42px 0 8px 0;
@@ -1746,6 +1755,7 @@ main {
 
     .post-content-body h3 {
         font-size: 19px;
+        font-weight: 500;
         line-height: 34px;
         letter-spacing: -0.19px;
         margin: 36px 0 8px 0;
