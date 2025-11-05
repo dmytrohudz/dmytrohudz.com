@@ -313,10 +313,12 @@ main {
     order: 1;
 }
 
-.primary:hover {
-    background-color: var(--spring-extra-light);
-    color: var(--spring-extra-dark);
-    box-shadow: 0px 2px 40px 1px rgba(107, 251, 104, 0.20), 0px 5px 36px 0px #67FB64 inset;
+@media (hover: hover) {
+    .primary:hover {
+        background-color: var(--spring-extra-light);
+        color: var(--spring-extra-dark);
+        box-shadow: 0px 2px 40px 1px rgba(107, 251, 104, 0.20), 0px 5px 36px 0px #67FB64 inset;
+    }
 }
 
 .secondary {
@@ -329,20 +331,25 @@ main {
     order: 2;
 }
 
-.secondary:hover {
-    background-color: var(--spring);
-    color: var(--spring-extra-dark);
+@media (hover: hover) {
+    .secondary:hover {
+        background-color: var(--spring);
+        color: var(--spring-extra-dark);
+    }
 }
 
 .tertiary {
     background-color: var(--white-trp-5);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    min-width: 155px;
 }
 
-.tertiary:hover {
-    background-color: var(--white-trp-30);
-    color: var(--white);
+@media (hover: hover) {
+    .tertiary:hover {
+        background-color: var(--white-trp-30);
+        color: var(--white);
+    }
 }
 
 .tertiary .svg {
@@ -351,8 +358,10 @@ main {
     height: 24px;
 }
 
-.tertiary:hover .svg {
-    fill: var(--white);
+@media (hover: hover) {
+    .tertiary:hover .svg {
+        fill: var(--white);
+    }
 }
 
 .blog-container {
@@ -517,8 +526,10 @@ main {
     width: 100%;
 }
 
-.post-item:hover {
-    cursor: pointer;
+@media (hover: hover) {
+    .post-item:hover {
+        cursor: pointer;
+    }
 }
 
 .post-date {
@@ -536,20 +547,22 @@ main {
     text-align: center;
 }
 
-.post-item:hover .post-date {
-    background: var(--white-trp-10);
-    color: var(--white);
-    transition: background 0.6s ease;
-}
+@media (hover: hover) {
+    .post-item:hover .post-date {
+        background: var(--white-trp-10);
+        color: var(--white);
+        transition: background 0.6s ease;
+    }
 
-.post-item:hover .post-title {
-    color: var(--spring);
-    transition: color 0.6s ease;
-}
+    .post-item:hover .post-title {
+        color: var(--spring);
+        transition: color 0.6s ease;
+    }
 
-.post-item:hover .post-excerpt {
-    color: var(--grey-text);
-    transition: color 0.6s ease;
+    .post-item:hover .post-excerpt {
+        color: var(--grey-text);
+        transition: color 0.6s ease;
+    }
 }
 
 .post-content {
@@ -595,9 +608,16 @@ main {
 }
 
 /* Reveal on hover (mouse) or focus (keyboard); also when the whole row is hovered */
-.post-title:hover::after,
-.post-title:focus-visible::after,
-.post-item:hover .post-title::after {
+@media (hover: hover) {
+    .post-title:hover::after,
+    .post-item:hover .post-title::after {
+        opacity: 0.95;
+        transform: translateY(-50%) translateX(0) scale(1);
+        filter: blur(0px);
+    }
+}
+
+.post-title:focus-visible::after {
     opacity: 0.95;
     transform: translateY(-50%) translateX(0) scale(1);
     filter: blur(0px);
@@ -758,8 +778,10 @@ main {
     transition: color 0.3s ease;
 }
 
-.post-content-body a:hover {
-    color: var(--spring-extra-light);
+@media (hover: hover) {
+    .post-content-body a:hover {
+        color: var(--spring-extra-light);
+    }
 }
 
 .post-content-body img {
@@ -912,10 +934,12 @@ main {
     white-space: nowrap;
 }
 
-.subscribe-button:hover:not(:disabled):not(.disabled) {
-    background-color: var(--spring-extra-light);
-    color: var(--spring-extra-dark);
-    box-shadow: 0px 2px 40px 1px rgba(107, 251, 104, 0.20), 0px 5px 36px 0px #67FB64 inset;
+@media (hover: hover) {
+    .subscribe-button:hover:not(:disabled):not(.disabled) {
+        background-color: var(--spring-extra-light);
+        color: var(--spring-extra-dark);
+        box-shadow: 0px 2px 40px 1px rgba(107, 251, 104, 0.20), 0px 5px 36px 0px #67FB64 inset;
+    }
 }
 
 .subscribe-button.disabled,
@@ -1113,8 +1137,10 @@ main {
         order: 2;
     }
 
-    .primary:hover {
-        box-shadow: 0px 2px 40px 1px rgba(107, 251, 104, 0.20), 0px 5px 36px 0px #67FB64 inset;
+    @media (hover: hover) {
+        .primary:hover {
+            box-shadow: 0px 2px 40px 1px rgba(107, 251, 104, 0.20), 0px 5px 36px 0px #67FB64 inset;
+        }
     }
 
     .secondary {
@@ -1167,8 +1193,10 @@ main {
         width: 100%;
     }
 
-    .post-item:hover {
-        background: none;
+    @media (hover: hover) {
+        .post-item:hover {
+            background: none;
+        }
     }
 
     .post-page .blog-subtitle {
@@ -1229,10 +1257,12 @@ main {
       }
     
       /* Prevent revealing the arrow via hover on containers/titles */
-      .post-title:hover::after,
-      .post-item:hover .post-title::after {
-        display: none !important;
-        opacity: 0 !important;
+      @media (hover: hover) {
+        .post-title:hover::after,
+        .post-item:hover .post-title::after {
+          display: none !important;
+          opacity: 0 !important;
+        }
       }
 
     /* Subscribe page mobile styles */
@@ -1405,8 +1435,10 @@ main {
         width: 100%;
     }
 
-    .post-item:hover {
-        background: none;
+    @media (hover: hover) {
+        .post-item:hover {
+            background: none;
+        }
     }
 
     .post-title {
@@ -1447,10 +1479,12 @@ main {
       }
     
       /* Prevent revealing the arrow via hover on containers/titles */
-      .post-title:hover::after,
-      .post-item:hover .post-title::after {
-        display: none !important;
-        opacity: 0 !important;
+      @media (hover: hover) {
+        .post-title:hover::after,
+        .post-item:hover .post-title::after {
+          display: none !important;
+          opacity: 0 !important;
+        }
       }
 
     /* Post content mobile styles - second breakpoint */
@@ -1628,8 +1662,10 @@ main {
         
     }
 
-    .primary:hover {
-        box-shadow: 0px 2px 40px 1px rgba(107, 251, 104, 0.20), 0px 5px 36px 0px #67FB64 inset;
+    @media (hover: hover) {
+        .primary:hover {
+            box-shadow: 0px 2px 40px 1px rgba(107, 251, 104, 0.20), 0px 5px 36px 0px #67FB64 inset;
+        }
     }
 
     .secondary {
@@ -1809,8 +1845,10 @@ display: none;
         padding: 42px 84px;
     }
 
-    .primary:hover {
-        box-shadow: 0px 2px 40px 1px rgba(107, 255, 127, 0.20), 0px 5px 36px 0px #67FB64 inset;
+    @media (hover: hover) {
+        .primary:hover {
+            box-shadow: 0px 2px 40px 1px rgba(107, 255, 127, 0.20), 0px 5px 36px 0px #67FB64 inset;
+        }
     }
 
     .secondary {
