@@ -345,6 +345,22 @@ main {
     min-width: 155px;
 }
 
+/* Desktop/Tablet only: fit-content for index page buttons */
+@media (min-width: 432px) {
+    body:not(.blog-page):not(.subscribe-page) .primary {
+        width: fit-content;
+    }
+
+    body:not(.blog-page):not(.subscribe-page) .secondary {
+        width: fit-content;
+    }
+
+    body:not(.blog-page):not(.subscribe-page) .tertiary {
+        width: fit-content;
+        min-width: unset;
+    }
+}
+
 @media (hover: hover) {
     .tertiary:hover {
         background-color: var(--white-trp-30);
