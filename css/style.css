@@ -1254,7 +1254,7 @@ main {
     }
     
     .blog-page .footer-buttons {
-        padding: 0 24px;
+        padding: 0 16px;
         gap: 4px;
         width: 100%;
         display: grid;
@@ -1333,7 +1333,7 @@ main {
     }
 
     .subscribe-page .footer-buttons {
-        padding: 0 24px;
+        padding: 0 16px;
         display: grid;
         grid-template-columns: 1fr;
         gap: 4px;
