@@ -502,7 +502,6 @@ main {
 }
 
 .blog-year {
-    padding-left: 20px;
     color: var(--white-trp-30);
     font-family: Geist Mono;
     font-size: 18px;
@@ -530,7 +529,6 @@ main {
     border-top: 1px solid rgba(255,255,255,0.1);
     gap: 20px;
     padding-top: 24px;
-    padding-left: 12px;
 }
 
 .post-item {
@@ -1048,7 +1046,7 @@ main {
     }
     
     header, footer, main {
-        padding: 24px 16px;
+        padding: 24px 24px;
     }
 
     /* Header */
@@ -1407,7 +1405,7 @@ main {
 @media (min-width: 412px) and (max-width: 432px) {
 
     header, footer, main {
-        padding: 24px 16px;
+        padding: 24px 24px;
     }
     
     .about-text {
