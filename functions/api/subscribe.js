@@ -41,6 +41,11 @@ export async function onRequest(context) {
         // Get ButtonDown API key from environment variables
         const BUTTONDOWN_API_KEY = env.BUTTONDOWN_API_KEY;
         
+        console.log('Environment check:', {
+            hasApiKey: !!BUTTONDOWN_API_KEY,
+            apiKeyLength: BUTTONDOWN_API_KEY?.length
+        });
+        
         if (!BUTTONDOWN_API_KEY) {
             console.error('BUTTONDOWN_API_KEY not configured');
             return new Response(JSON.stringify({ error: 'Server configuration error' }), {
@@ -53,6 +58,7 @@ export async function onRequest(context) {
         }
         
         // Subscribe to ButtonDown
+        console.log('Calling ButtonDown API for email:', email);
         const buttondownResponse = await fetch('https://api.buttondown.email/v1/subscribers', {
             method: 'POST',
             headers: {
@@ -65,13 +71,17 @@ export async function onRequest(context) {
             })
         });
         
+        console.log('ButtonDown response status:', buttondownResponse.status);
+        
         const responseData = await buttondownResponse.json();
+        console.log('ButtonDown response data:', responseData);
         
         if (!buttondownResponse.ok) {
             // Handle specific ButtonDown errors
             if (buttondownResponse.status === 400) {
                 // Email already subscribed or validation error
                 const errorMessage = responseData.email?.[0] || responseData.detail || 'Invalid email address';
+                console.log('ButtonDown validation error:', errorMessage);
                 return new Response(JSON.stringify({ error: errorMessage }), {
                     status: 400,
                     headers: {
@@ -81,6 +91,7 @@ export async function onRequest(context) {
                 });
             }
             
+            console.error('ButtonDown API error:', buttondownResponse.status, responseData);
             throw new Error(`ButtonDown API error: ${buttondownResponse.status}`);
         }
         
