@@ -66,7 +66,7 @@ export async function onRequest(context) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                email: email,
+                email_address: email,
                 tags: ['website']
             })
         });
