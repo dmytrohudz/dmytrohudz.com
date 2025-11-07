@@ -877,18 +877,18 @@ main {
 .subscribe-form {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 14px;
     width: 100%;
-    max-width: 100%;
+    max-width: 720px;
 }
 
 .email-label {
     color: var(--white-text);
     font-family: Geist;
-    font-size: 40px;
+    font-size: 18px;
     font-weight: 400;
-    line-height: 48px;
-    letter-spacing: -0.8px;
+    line-height: 24px;
+    letter-spacing: -0.54px;
 }
 
 .subscribe-input-wrapper {
@@ -896,12 +896,15 @@ main {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 100%;
     background: var(--grey-background);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 32px;
-    padding: 10px;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    padding: 4px 10px 4px 4px;
     transition: border-color 0.3s ease;
+}
+
+.subscribe-input-wrapper:hover {
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .subscribe-input-wrapper:focus-within {
@@ -919,12 +922,12 @@ main {
     outline: none;
     color: var(--white-text);
     font-family: Geist;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 400;
     line-height: 32px;
     letter-spacing: -0.24px;
-    padding: 24px 32px;
-    min-height: 80px;
+    padding: 20px 28px;
+    min-height: 72px;
 }
 
 .subscribe-input::placeholder {
@@ -940,13 +943,13 @@ main {
     background-color: var(--spring);
     color: var(--background);
     font-family: Geist;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;
-    line-height: 22px;
-    letter-spacing: -0.22px;
+    line-height: 18px;
+    letter-spacing: -0.18px;
     border: none;
-    border-radius: 23px;
-    padding: 28px 56px;
+    border-radius: 20px;
+    padding: 20px 40px;
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
@@ -972,15 +975,38 @@ main {
     cursor: wait;
 }
 
+.messages-container {
+    min-height: 54px;
+    display: flex;
+    flex-direction: column;
+}
+
 .message {
     display: none;
-    font-family: Geist;
-    font-size: 18px;
-    line-height: 28px;
-    letter-spacing: -0.18px;
-    padding: 16px 24px;
+    font-family: "Geist Mono", monospace;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.14px;
+    padding: 14px 22px;
     border-radius: 16px;
-    margin-top: 8px;
+    margin-top: 2px;
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(-8px);
+    transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+}
+
+.message.show {
+    display: block;
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+.message.hide {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(-8px);
 }
 
 .error-message {
@@ -1290,9 +1316,9 @@ main {
     }
 
     .email-label {
-        font-size: 30px;
-        line-height: 42px;
-        letter-spacing: -0.56px;
+        font-size: 15px;
+        line-height: 20px;
+        letter-spacing: -0.45px;
     }
 
     .subscribe-input-wrapper {
@@ -1305,27 +1331,32 @@ main {
 
     .subscribe-input {
         font-size: 18px;
-        line-height: 24px;
+        line-height: 26px;
         letter-spacing: -0.18px;
-        padding: 20px 24px;
-        min-height: 64px;
+        padding: 16px 20px;
+        min-height: 60px;
     }
 
     .subscribe-button {
         width: 100%;
-        font-size: 18px;
-        line-height: 18px;
-        letter-spacing: -0.18px;
-        padding: 24px 32px;
+        font-size: 16px;
+        line-height: 16px;
+        letter-spacing: -0.16px;
+        padding: 20px 32px;
         border-radius: 17px;
     }
 
+    .messages-container {
+        min-height: 46px;
+    }
+
     .message {
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: -0.16px;
-        padding: 12px 20px;
-        border-radius: 12px;
+        font-family: "Geist Mono", monospace;
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: -0.12px;
+        padding: 12px 18px;
+        border-radius: 14px;
     }
 
     .subscribe-page footer {
@@ -1576,12 +1607,6 @@ main {
         padding-bottom: 100px;
     }
 
-    .email-label {
-        font-size: 30px;
-        line-height: 42px;
-        letter-spacing: -0.56px;
-    }
-
     .subscribe-input-wrapper {
         flex-direction: column;
         align-items: stretch;
@@ -1591,28 +1616,33 @@ main {
     }
 
     .subscribe-input {
-        font-size: 18px;
-        line-height: 24px;
-        letter-spacing: -0.18px;
-        padding: 20px 24px;
-        min-height: 64px;
+        font-size: 22px;
+        line-height: 30px;
+        letter-spacing: -0.22px;
+        padding: 18px 24px;
+        min-height: 66px;
     }
 
     .subscribe-button {
         width: 100%;
-        font-size: 18px;
-        line-height: 18px;
-        letter-spacing: -0.18px;
-        padding: 24px 32px;
+        font-size: 16px;
+        line-height: 16px;
+        letter-spacing: -0.16px;
+        padding: 20px 32px;
         border-radius: 17px;
     }
 
+    .messages-container {
+        min-height: 46px;
+    }
+
     .message {
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: -0.16px;
-        padding: 12px 20px;
-        border-radius: 12px;
+        font-family: "Geist Mono", monospace;
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: -0.12px;
+        padding: 12px 18px;
+        border-radius: 14px;
     }
 }
 
@@ -1710,24 +1740,28 @@ main {
     }
 
     .email-label {
-        font-size: 30px;
-        line-height: 46px;
-        letter-spacing: -0.6px;
+        font-size: 17px;
+        line-height: 24px;
+        letter-spacing: -0.51px;
     }
 
     .subscribe-input {
-        font-size: 20px;
-        line-height: 28px;
-        letter-spacing: -0.2px;
-        padding: 22px 28px;
-        min-height: 72px;
+        font-size: 22px;
+        line-height: 30px;
+        letter-spacing: -0.22px;
+        padding: 20px 28px;
+        min-height: 70px;
     }
 
     .subscribe-button {
-        font-size: 18px;
-        line-height: 18px;
-        letter-spacing: -0.18px;
-        padding: 24px 48px;
+        font-size: 16px;
+        line-height: 16px;
+        letter-spacing: -0.16px;
+        padding: 20px 40px;
+    }
+
+    .messages-container {
+        min-height: 54px;
     }
 
     .subscribe-page .footer-buttons {

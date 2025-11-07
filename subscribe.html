@@ -46,15 +46,25 @@
             const submitButton = document.getElementById('submit-button');
             const errorMessage = document.getElementById('error-message');
             const successMessage = document.getElementById('success-message');
+            let messageTimeout = null;
 
             // Real-time validation
             emailInput.addEventListener('input', function () {
                 const email = emailInput.value.trim();
                 
+                // Clear any existing timeout
+                if (messageTimeout) clearTimeout(messageTimeout);
+                
                 // Remove error state when user starts typing
                 emailInput.classList.remove('error');
-                errorMessage.style.display = 'none';
-                successMessage.style.display = 'none';
+                
+                // Hide messages with animation
+                if (errorMessage.classList.contains('show')) {
+                    hideMessage(errorMessage);
+                }
+                if (successMessage.classList.contains('show')) {
+                    hideMessage(successMessage);
+                }
                 
                 // Enable/disable button based on input
                 if (email.length > 0) {
@@ -125,18 +135,61 @@
                 }
             });
 
+            function hideMessage(messageElement) {
+                messageElement.classList.remove('show');
+                messageElement.classList.add('hide');
+                setTimeout(() => {
+                    messageElement.style.display = 'none';
+                    messageElement.classList.remove('hide');
+                }, 400); // Match the CSS transition duration
+            }
+
             function showError(message) {
+                // Clear any existing timeout
+                if (messageTimeout) clearTimeout(messageTimeout);
+                
+                // Hide success message immediately
+                successMessage.classList.remove('show');
+                successMessage.style.display = 'none';
+                
+                // Show error message
                 emailInput.classList.add('error');
                 errorMessage.textContent = message;
                 errorMessage.style.display = 'block';
-                successMessage.style.display = 'none';
+                
+                // Trigger animation
+                setTimeout(() => {
+                    errorMessage.classList.add('show');
+                }, 10);
+                
+                // Auto-dismiss after 3 seconds
+                messageTimeout = setTimeout(() => {
+                    hideMessage(errorMessage);
+                }, 3000);
             }
 
             function showSuccess(message) {
+                // Clear any existing timeout
+                if (messageTimeout) clearTimeout(messageTimeout);
+                
+                // Hide error message immediately
+                errorMessage.classList.remove('show');
+                errorMessage.style.display = 'none';
+                
+                // Show success message
                 emailInput.classList.remove('error');
                 successMessage.textContent = message;
                 successMessage.style.display = 'block';
-                errorMessage.style.display = 'none';
+                
+                // Trigger animation
+                setTimeout(() => {
+                    successMessage.classList.add('show');
+                }, 10);
+                
+                // Auto-dismiss after 3 seconds
+                messageTimeout = setTimeout(() => {
+                    hideMessage(successMessage);
+                }, 3000);
             }
         });
     </script>
@@ -159,6 +212,7 @@
                             class="subscribe-input" 
                             placeholder="name@example.com"
                             autocomplete="email"
+                            autofocus
                             required
                         />
                         <button 
@@ -170,8 +224,10 @@
                             subscribe
                         </button>
                     </div>
-                    <div id="error-message" class="message error-message"></div>
-                    <div id="success-message" class="message success-message"></div>
+                    <div class="messages-container">
+                        <div id="error-message" class="message error-message"></div>
+                        <div id="success-message" class="message success-message"></div>
+                    </div>
                 </form>
             </div>
         </div>
