@@ -189,6 +189,7 @@ function generatePostHtml(post) {
 </head>
 <body class="blog-page post-page">
     <div class="noise-overlay"></div>
+    <div class="page-container">
     <main>
         <div class="blog-container">
             <div class="blog-header">
@@ -215,6 +216,7 @@ function generatePostHtml(post) {
             <a href="#" class="button tertiary" id="language-toggle-button">read ukr</a>
         </div>
     </footer>
+    </div>
 </body>
 </html>`;
     

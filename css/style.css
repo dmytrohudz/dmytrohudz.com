@@ -142,7 +142,9 @@ html, body {
     background-color: #0F0F0F;
 }
 
-body {
+/* Body now only sets base styles from html, flex layout moved to .page-container to prevent layout issues when browser extensions inject elements */
+
+.page-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -889,6 +891,7 @@ main {
     font-weight: 400;
     line-height: 24px;
     letter-spacing: -0.54px;
+    padding-left: 24px;
 }
 
 .subscribe-input-wrapper {
@@ -922,11 +925,11 @@ main {
     outline: none;
     color: var(--white-text);
     font-family: Geist;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 400;
-    line-height: 32px;
-    letter-spacing: -0.24px;
-    padding: 20px 28px;
+    line-height: 26px;
+    letter-spacing: -0.18px;
+    padding: 4px 20px;
     min-height: 72px;
 }
 
@@ -1319,6 +1322,7 @@ main {
         font-size: 15px;
         line-height: 20px;
         letter-spacing: -0.45px;
+        padding-left: 16px;
     }
 
     .subscribe-input-wrapper {
@@ -1330,10 +1334,10 @@ main {
     }
 
     .subscribe-input {
-        font-size: 18px;
-        line-height: 26px;
-        letter-spacing: -0.18px;
-        padding: 16px 20px;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
+        padding: 16px 8px;
         min-height: 60px;
     }
 
@@ -1616,11 +1620,9 @@ main {
     }
 
     .subscribe-input {
-        font-size: 22px;
-        line-height: 30px;
-        letter-spacing: -0.22px;
-        padding: 18px 24px;
-        min-height: 66px;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.16px;
     }
 
     .subscribe-button {
@@ -1743,14 +1745,7 @@ main {
         font-size: 17px;
         line-height: 24px;
         letter-spacing: -0.51px;
-    }
-
-    .subscribe-input {
-        font-size: 22px;
-        line-height: 30px;
-        letter-spacing: -0.22px;
-        padding: 20px 28px;
-        min-height: 70px;
+        padding-left: 24px;
     }
 
     .subscribe-button {
