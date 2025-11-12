@@ -181,6 +181,7 @@ html, body {
     --spring-trp-5: rgba(0, 255, 127, 0.05);
     --white-trp-5: rgba(255, 255, 255, 0.05);
     --white-trp-10: rgba(255, 255, 255, 0.1);
+    --white-trp-17: rgba(255, 255, 255, 0.17);
     --white-trp-30: rgba(255, 255, 255, 0.3);
     --white: #FFFFFF;
     --white-text: #F0F0F0;
@@ -312,6 +313,19 @@ main {
     gap: 8px;
 }
 
+.button-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Back button specific styling */
+.back-button {
+    gap: 0;
+    padding: 20px 26px 20px 18px !important; /* asymmetric padding for visual balance with icon */
+    min-width: unset !important; /* remove min-width to let button hug content */
+}
+
 .primary {
     background-color: var(--spring);
     width: 194px;
@@ -352,6 +366,7 @@ main {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     min-width: 155px;
+    width: fit-content;
 }
 
 /* Desktop/Tablet only: fit-content for index page buttons */
@@ -372,7 +387,7 @@ main {
 
 @media (hover: hover) {
     .tertiary:hover {
-        background-color: var(--white-trp-30);
+        background-color: var(--white-trp-17);
         color: var(--white);
     }
 }
@@ -1186,6 +1201,16 @@ main {
         line-height: 18px;
         letter-spacing: -0.18px;
         gap: 10px;
+    }
+
+    .back-button {
+        gap: 0;
+        padding: 20px 26px 20px 18px;
+        min-width: unset;
+    }
+
+    .back-button .button-content {
+        padding-right: 4px;
     }
 
     .primary {
