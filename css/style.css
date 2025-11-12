@@ -1084,20 +1084,20 @@ main {
 
     /* Header */
     .header-content {
-        gap: 18px;
+        gap: 12px;
+        justify-content: center;
     }
 
     /* JSON */
     #user-avatar {
+        width: 60px;
         height: 60px;
-        display: none;
     }
 
     .user-info {
         gap: 10px;
         padding-top: none;
-        width: 100%;
-        align-items: center;
+        align-items: flex-start;
     }
     
     .user-name {
