@@ -199,9 +199,16 @@ header, footer, main {
 /* Header */
 .header-content {
     display: flex;
+    width: 100%;
+}
+
+.user-profile {
+    display: inline-flex;
     flex-direction: row;
     gap: 24px;
     align-items: center;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .blog-header {
@@ -1084,19 +1091,23 @@ main {
 
     /* Header */
     .header-content {
-        gap: 12px;
         justify-content: center;
+    }
+
+    .user-profile {
+        gap: 16px;
     }
 
     /* JSON */
     #user-avatar {
-        width: 60px;
-        height: 60px;
+        width: 64px;
+        height: 64px;
     }
 
     .user-info {
         gap: 10px;
         padding-top: none;
+        padding-bottom: 2px;
         align-items: flex-start;
     }
     
@@ -1840,7 +1851,7 @@ display: none;
     }
 
     /* Header */
-    .header-content {
+    .user-profile {
         gap: 36px;
     }
     
