@@ -1100,8 +1100,8 @@ main {
 
     /* JSON */
     #user-avatar {
-        width: 64px;
-        height: 64px;
+        width: 60px;
+        height: 60px;
     }
 
     .user-info {
