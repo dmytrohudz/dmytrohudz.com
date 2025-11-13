@@ -142,6 +142,23 @@ html, body {
     background-color: #0F0F0F;
 }
 
+/* Page load fade-in blur animation - ONLY for index.html (not blog pages) */
+@keyframes fadeInBlur {
+    0% {
+        opacity: 0;
+        filter: blur(20px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* Apply animation only to index page (body without blog-page or subscribe-page class) */
+body:not(.blog-page):not(.subscribe-page) .page-container {
+    animation: fadeInBlur 1.5s ease-out forwards;
+}
+
 /* Body now only sets base styles from html, flex layout moved to .page-container to prevent layout issues when browser extensions inject elements */
 
 .page-container {
