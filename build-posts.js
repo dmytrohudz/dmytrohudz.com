@@ -301,3 +301,11 @@ function buildPosts() {
 // Run the build
 buildPosts();
 
+// Automatically rebuild RSS feed after posts are built
+console.log('\nRebuilding RSS feed...');
+try {
+    require('./build-rss.js');
+} catch (error) {
+    console.error('Error building RSS feed:', error);
+}
+

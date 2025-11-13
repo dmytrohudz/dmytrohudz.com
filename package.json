@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Personal blog with Decap CMS",
   "scripts": {
+    "build": "node build-posts.js",
     "build-posts": "node build-posts.js",
     "build-rss": "node build-rss.js",
-    "dev": "python -m http.server 8000",
-    "build": "npm run build-posts && npm run build-rss"
+    "dev": "python -m http.server 8000"
   },
   "dependencies": {
     "gray-matter": "^4.0.3"
