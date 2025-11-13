@@ -35,9 +35,7 @@ body_uk: >-
   За роки роботи накопичуються моменти — класні, важкі, дивні, інколи такі, що повністю змінюють оптику. Більшість з них так і лишаються невимовленими, похованими під новими проєктами та дедлайнами.
 
 
-  Цей блог — спосіб упіймати ці моменти до того, як вони зникнуть.
-
-  Місце поговорити про роботу, людей, розвиток, індустрію, мій шлях — усе те, що не влізає в портфоліо чи пост в соціалці.
+  Цей блог — спосіб упіймати ці моменти до того, як вони зникнуть.<br>Місце поговорити про роботу, людей, розвиток, індустрію, мій шлях — усе те, що не влізає в портфоліо чи пост в соціалці.
 
 
   ## Чого очікувати
@@ -45,11 +43,7 @@ body_uk: >-
   Тут будуть думки з реальних проєктів, роздуми про кар’єру та зростання, трошки про людське в дизайні й продакті, речі, які хотів би знати напочатку шляху, і невеликі ідеї, яким цілком достатньо лишитися всього кількома абзацами.
 
 
-  Нічого глянцевого.
-
-  Нічого написаного під алгоритм.
-
-  Просто чесні, особисті тексти.
+  Нічого глянцевого.<br>Нічого написаного під алгоритм.<br>Просто чесні, особисті тексти.
 
 
   ## Ну що ж, поїхали
@@ -57,14 +51,11 @@ body_uk: >-
   Простий старт. Мій власний шматочок інтернету. Без тиску, без планів досягнути чогось, просто місце, куди можна складати речі, які не хочеться загубити.
 
 
-  Якщо читаєш це — дуже радий, що ти тут.
-
-  Подивимось, куди воно нас приведе.
+  Якщо читаєш це — дуже радий, що ти тут.<br>Подивимось, куди воно нас приведе.
 ---
 At some point, after enough years in product, you end up with a ridiculous amount of thoughts, stories, lessons, and random experiences that never get shared anywhere. They sit in notes apps, in old decks, in voice memos recorded while traveling to work. None of it needs to be turned into a book or a “framework” — but it feels worth capturing somewhere.
 
-I wanted a place to put all of that.
-Somewhere simple, personal, and fully mine.
+I wanted a place to put all of that.<br>Somewhere simple, personal, and fully mine.
 
 ## Why build a site
 Medium, Substack, all those platforms — they’re fine, but they never feel like home. Everything looks the same, everything follows a pattern, everything feels a little processed.
@@ -73,18 +64,14 @@ I wanted a space that has my own tone and shape, without ads, popups, or whateve
 ## Why write at all
 I’ve had a career full of good moments, tough moments, strange moments, and ones that completely changed how I see things. A lot of that stays unspoken, buried under new deadlines and projects.
 
-This blog is a way to catch those moments before they disappear.
-A place to talk about work, people, growth, the industry, the journey — everything that doesn’t fit neatly into a portfolio block or a social media post.
+This blog is a way to catch those moments before they disappear.<br>A place to talk about work, people, growth, the industry, the journey — everything that doesn’t fit neatly into a portfolio block or a social media post.
 
 ## What to expect
 You’ll find thoughts from real projects, reflections on career and growth, the human side of design and product, things I wish I’d known earlier, and small ideas that don’t need to be something more than a few paragraphs.
 
-Nothing overproduced.
-Nothing trying to go viral.
-Just honest, personal writing.
+Nothing overproduced.<br>Nothing trying to go viral.<br>Just honest, personal writing.
 
 ## So… here we go
 A simple start. My own space on the internet. No pressure, no agenda — just a place to put things I don’t want to lose.
 
-If you’re reading this, thanks for being here.
-Let’s see where it goes.
+If you’re reading this, thanks for being here.<br>Let’s see where it goes.
