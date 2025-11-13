@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="content-language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why This Blog — Dmytro Hudz</title>
+    <meta name="description" content="At some point, after enough years in product, you end up with a ridiculous amount of thoughts, stories, lessons, and random experiences"/>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+    <script src="../../js/script.js" defer></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/meta/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/meta/site.webmanifest">
+    <meta property="og:image" content="https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1715016023/open-graph_s0lp27.jpg">
+    <meta name="twitter:image" content="https://res.cloudinary.com/ddycivi0t/image/upload/fl_preserve_transparency/v1715016023/open-graph_s0lp27.jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Handle back navigation
+            var back = document.getElementById('back-link');
+            if (back) {
+                back.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (document.referrer && document.referrer.indexOf(location.host) !== -1) {
+                        history.back();
+                    } else {
+                        window.location.href = '/blog.html';
+                    }
+                });
+            }
+
+            // Get current language preference (default to 'en')
+            const currentLang = localStorage.getItem('preferred_language') || 'en';
+            
+            // Post data embedded in the page
+            const postData = {
+                title_en: "Why This Blog",
+                title_uk: "Навіщо цей блог",
+                content_en: "<p>At some point, after enough years in product, you end up with a ridiculous amount of thoughts, stories, lessons, and random experiences that never get shared anywhere. They sit in notes apps, in old decks, in voice memos recorded while traveling to work. None of it needs to be turned into a book or a “framework” — but it feels worth capturing somewhere.</p><p>I wanted a place to put all of that.</p>\n<p>Somewhere simple, personal, and fully mine.</p><h2>Why build a site</h2>\n<p>Medium, Substack, all those platforms — they’re fine, but they never feel like home. Everything looks the same, everything follows a pattern, everything feels a little processed.</p>\n<p>I wanted a space that has my own tone and shape, without ads, popups, or whatever growth feature they’re pushing this month. Just a clean corner of the internet where I can write like a human, not like a platform user.</p><h2>Why write at all</h2>\n<p>I’ve had a career full of good moments, tough moments, strange moments, and ones that completely changed how I see things. A lot of that stays unspoken, buried under new deadlines and projects.</p><p>This blog is a way to catch those moments before they disappear.</p>\n<p>A place to talk about work, people, growth, the industry, the journey — everything that doesn’t fit neatly into a portfolio block or a LinkedIn post.</p><h2>What to expect</h2>\n<p>You’ll find thoughts from real projects, reflections on career and growth, the human side of design and product, things I wish I’d known earlier, and small ideas that don’t need to be something more than a few paragraphs.</p><p>Nothing overproduced. </p>\n<p>Nothing trying to go viral. </p>\n<p>Just honest, personal writing.</p><h2>So… here we go</h2>\n<p>A simple start. My own space on the internet. No pressure, no agenda — just a place to put things I don’t want to lose.</p><p>If you’re reading this, thanks for being here.</p>\n<p>Let’s see where it goes.</p>",
+                content_uk: "<p>З часом в продакті назбирується така кількість думок, історій, крінжових ситуацій і тих самих “aha momens”, що вони просто тонуть в нотатках, загублених файлах та voice memos, зроблених десь по дорозі на роботу.</p>\n<p>Не треба з усього цього робити книжку чи чергову \"унікальну\" методологію. Але воно варте того, щоб десь існувати, а не пилитись в архівах.</p><p>Хотілось мати місце, де все це складати — просте, особисте, справді моє.</p><h2>Чому власний сайт</h2>\n<p>Medium, Substack та всі інші платформи нормальні… але вони не про “своє”. Там усе однакове, передбачуване, шаблонне — грубовато, але це конвеєрна історія.</p>\n<p>Хотілось свого простору: без банерів, без попапів, без нав’язаних фіч для росту. Тихий куточок інтернету, де можна писати як людина, а не як черговий юзер платформи.</p><h2>Навіщо взагалі писати</h2>\n<p>За роки роботи накопичуються моменти — класні, важкі, дивні, інколи такі, що повністю міняють оптику. І більшість з них так і лишаються невимовленими, похованими під новими дедлайнами.</p><p>Цей блог — спосіб упіймати ці моменти до того, як вони зникнуть.</p>\n<p>Місце поговорити про роботу, людей, розвиток, індустрію, мій шлях — усе те, що не влізає в портфоліо чи пост в LinkedIn.</p><h2>Чого очікувати</h2>\n<p>Тут будуть думки з реальних проєктів, роздуми про кар’єру та зростання, трошки про людське в дизайні й продакті, речі, які хотів би знати напочатку шляху, і невеликі ідеї, яким цілком достатньо лишитися всього кількома абзацами.</p><p>Нічого глянцевого.</p>\n<p>Нічого написаного під алгоритм.</p>\n<p>Просто чесні, особисті тексти.</p><h2>Ну що ж, поїхали</h2>\n<p>Простий старт. Мій власний шматочок інтернету. Без тиску, без планів досягнути чогось, просто місце, куди можна складати речі, які не хочеться загубити.</p><p>Якщо ти це читаєш — радий, що ти тут.</p>\n<p>Подивимось, куди воно нас приведе.</p>",
+                date: "2025-11-13T20:51:00.000Z"
+            };
+            
+            const postTitleElement = document.getElementById('post-title');
+            const contentBody = document.querySelector('.post-content-body');
+            
+            // Store both versions in data attributes for language switching
+            if (postTitleElement) {
+                postTitleElement.setAttribute('data-title-en', postData.title_en);
+                postTitleElement.setAttribute('data-title-uk', postData.title_uk);
+            }
+            
+            if (contentBody) {
+                contentBody.setAttribute('data-content-en', postData.content_en);
+                contentBody.setAttribute('data-content-uk', postData.content_uk);
+            }
+            
+            // Display content based on current language
+            const displayTitle = currentLang === 'uk' ? postData.title_uk : postData.title_en;
+            const displayContent = currentLang === 'uk' ? postData.content_uk : postData.content_en;
+
+            if (displayTitle && postTitleElement) {
+                postTitleElement.textContent = displayTitle;
+                document.title = `${displayTitle} — Dmytro Hudz`;
+            }
+
+            if (displayContent && contentBody) {
+                contentBody.innerHTML = displayContent;
+            }
+
+            // Format and display date
+            const date = new Date(postData.date);
+            const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+            const month = months[date.getMonth()];
+            const day = String(date.getDate()).padStart(2, '0');
+            const year = date.getFullYear();
+            document.getElementById('post-date').textContent = `${month}-${day}-${year}`;
+
+            // Handle language toggle button
+            const languageToggleButton = document.getElementById('language-toggle-button');
+            const backButton = document.getElementById('back-link');
+            
+            if (languageToggleButton && backButton) {
+                // Temporarily set to "read eng" to measure the wider text
+                const originalText = languageToggleButton.textContent;
+                languageToggleButton.textContent = 'read eng';
+                const maxWidth = Math.max(backButton.offsetWidth, languageToggleButton.offsetWidth);
+                languageToggleButton.textContent = originalText;
+                
+                // Set min-width to prevent button resize when toggling
+                languageToggleButton.style.minWidth = maxWidth + 'px';
+                
+                languageToggleButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const postTitleElement = document.getElementById('post-title');
+                    const contentBody = document.querySelector('.post-content-body');
+                    
+                    // Get current language (default to 'en')
+                    const currentLang = localStorage.getItem('preferred_language') || 'en';
+                    const newLang = currentLang === 'en' ? 'uk' : 'en';
+                    
+                    // Get titles and content for both languages
+                    const titleEn = postTitleElement.getAttribute('data-title-en');
+                    const titleUk = postTitleElement.getAttribute('data-title-uk');
+                    const contentEn = contentBody.getAttribute('data-content-en');
+                    const contentUk = contentBody.getAttribute('data-content-uk');
+                    
+                    // Switch to the new language
+                    if (newLang === 'uk') {
+                        postTitleElement.textContent = titleUk || titleEn;
+                        contentBody.innerHTML = contentUk || contentEn;
+                        document.title = `${titleUk || titleEn} — Dmytro Hudz`;
+                        languageToggleButton.textContent = 'read eng';
+                    } else {
+                        postTitleElement.textContent = titleEn;
+                        contentBody.innerHTML = contentEn;
+                        document.title = `${titleEn} — Dmytro Hudz`;
+                        languageToggleButton.textContent = 'read ukr';
+                    }
+                    
+                    // Save preference
+                    localStorage.setItem('preferred_language', newLang);
+                });
+                
+                // Set initial button text based on current language
+                const initialLang = localStorage.getItem('preferred_language') || 'en';
+                languageToggleButton.textContent = initialLang === 'en' ? 'read ukr' : 'read eng';
+            }
+        });
+    </script>
+</head>
+<body class="blog-page post-page">
+    <div class="noise-overlay"></div>
+    <div class="page-container">
+    <main>
+        <div class="blog-container">
+            <div class="blog-header">
+                <h1 class="blog-title" id="post-title">Why This Blog</h1>
+                <p class="blog-subtitle" id="post-date">Loading...</p>
+            </div>
+            <div class="blog-content">
+                <article class="post-article">
+                    <div class="post-content-body">
+                        <p>At some point, after enough years in product, you end up with a ridiculous amount of thoughts, stories, lessons, and random experiences that never get shared anywhere. They sit in notes apps, in old decks, in voice memos recorded while traveling to work. None of it needs to be turned into a book or a “framework” — but it feels worth capturing somewhere.</p><p>I wanted a place to put all of that.</p>
+<p>Somewhere simple, personal, and fully mine.</p><h2>Why build a site</h2>
+<p>Medium, Substack, all those platforms — they’re fine, but they never feel like home. Everything looks the same, everything follows a pattern, everything feels a little processed.</p>
+<p>I wanted a space that has my own tone and shape, without ads, popups, or whatever growth feature they’re pushing this month. Just a clean corner of the internet where I can write like a human, not like a platform user.</p><h2>Why write at all</h2>
+<p>I’ve had a career full of good moments, tough moments, strange moments, and ones that completely changed how I see things. A lot of that stays unspoken, buried under new deadlines and projects.</p><p>This blog is a way to catch those moments before they disappear.</p>
+<p>A place to talk about work, people, growth, the industry, the journey — everything that doesn’t fit neatly into a portfolio block or a LinkedIn post.</p><h2>What to expect</h2>
+<p>You’ll find thoughts from real projects, reflections on career and growth, the human side of design and product, things I wish I’d known earlier, and small ideas that don’t need to be something more than a few paragraphs.</p><p>Nothing overproduced. </p>
+<p>Nothing trying to go viral. </p>
+<p>Just honest, personal writing.</p><h2>So… here we go</h2>
+<p>A simple start. My own space on the internet. No pressure, no agenda — just a place to put things I don’t want to lose.</p><p>If you’re reading this, thanks for being here.</p>
+<p>Let’s see where it goes.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-buttons">
+            <a href="/blog.html" class="button tertiary back-button" id="back-link">
+                <span class="button-content"><svg class="svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.2045 3.70402C14.6438 3.26468 15.357 3.26468 15.7963 3.70402C16.2356 4.14336 16.2356 4.85647 15.7963 5.29581L9.0922 11.9999L15.7963 18.704C16.2356 19.1434 16.2356 19.8565 15.7963 20.2958C15.357 20.7352 14.6438 20.7352 14.2045 20.2958L6.7045 12.7958C6.26517 12.3565 6.26517 11.6434 6.7045 11.204L14.2045 3.70402Z" fill="white"/></svg>back</span>
+            </a>
+            <a href="#" class="button tertiary" id="language-toggle-button">read ukr</a>
+        </div>
+    </footer>
+    </div>
+</body>
+</html>

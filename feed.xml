@@ -6,7 +6,7 @@
     <link>https://dmytrohudz.com/blog.html</link>
     <atom:link href="https://dmytrohudz.com/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Nov 2025 19:21:20 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 13 Nov 2025 21:00:14 GMT</lastBuildDate>
     <item>
       <title>The first post that I&apos;ve created</title>
       <link>https://dmytrohudz.com/blog/personal-experience/</link>
@@ -16,6 +16,17 @@
       <category>ux</category>
       <category>experience</category>
       <category>design</category>
+    </item>
+    <item>
+      <title>Why This Blog</title>
+      <link>https://dmytrohudz.com/blog/why-this-blog/</link>
+      <guid isPermaLink="true">https://dmytrohudz.com/blog/why-this-blog/</guid>
+      <pubDate>Thu, 13 Nov 2025 20:51:00 GMT</pubDate>
+      <description>At some point, after enough years in product, you end up with a ridiculous amount of thoughts, stories, lessons, and random experiences</description>
+      <category>reflections</category>
+      <category>ideas</category>
+      <category>career</category>
+      <category>personal</category>
     </item>
   </channel>
 </rss>
