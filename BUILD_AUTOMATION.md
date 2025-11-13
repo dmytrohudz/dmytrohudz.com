@@ -56,7 +56,37 @@ Your hosting platform will sync the changes and the deleted post will return a 4
 
 ### Integration with Decap CMS
 
-Decap CMS automatically runs the build scripts when you publish/unpublish posts through the admin interface, so the automation works seamlessly with the CMS workflow.
+When you create, update, or delete posts through Decap CMS (`/admin/`):
+
+1. **Decap CMS commits changes to GitHub** (adds/modifies/deletes `.md` files)
+2. **GitHub Action automatically triggers** (`.github/workflows/build-posts.yml`)
+3. **Build script runs** (`npm run build`)
+4. **Generated files are committed** (`posts.json`, `feed.xml`, blog pages)
+5. **Cloudflare Pages deploys** the updated site
+
+This is **fully automated** - you don't need to run any manual commands!
+
+### Automatic Post Deletion
+
+When you delete a post through Decap CMS:
+- ✅ The `.md` file is deleted from `/posts`
+- ✅ The `/blog/{slug}/` directory is removed
+- ✅ The post is removed from `posts.json`
+- ✅ The post is removed from RSS feed
+- ✅ All changes are committed and deployed automatically
+
+See `AUTOMATED_POST_DELETION.md` for detailed documentation.
+
+### Manual Build (Optional)
+
+If you prefer to build locally before pushing:
+
+```bash
+npm run build
+git add .
+git commit -m "Update posts"
+git push
+```
 
 ---
 
