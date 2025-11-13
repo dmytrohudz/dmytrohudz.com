@@ -383,6 +383,12 @@ main {
         width: fit-content;
         min-width: unset;
     }
+
+    /* Blog page: make subscribe button hug content on desktop */
+    .blog-page .tertiary {
+        width: fit-content;
+        min-width: unset;
+    }
 }
 
 @media (hover: hover) {
@@ -406,6 +412,7 @@ main {
 
 .email-button {
     gap: 12px;
+    padding-right: 26px;
 }
 
 .blog-container {
@@ -1231,6 +1238,10 @@ main {
         border-radius: 17px;
         padding: 24px 56px;
         order: 1;
+    }
+
+    .footer-buttons.index .tertiary {
+        width: 100%;
     }
 
     .tertiary .svg {
