@@ -3,6 +3,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
 
 a {
@@ -340,7 +342,7 @@ main {
 /* Back button specific styling */
 .back-button {
     gap: 0;
-    padding: 20px 26px 20px 18px !important; /* asymmetric padding for visual balance with icon */
+    padding: 20px 28px 20px 20px !important; /* asymmetric padding for visual balance with icon */
     min-width: unset !important; /* remove min-width to let button hug content */
 }
 
