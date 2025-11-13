@@ -32,12 +32,12 @@ body_uk: >-
 
   ## Навіщо взагалі писати
 
-  За роки роботи накопичуються моменти — класні, важкі, дивні, інколи такі, що повністю міняють оптику. І більшість з них так і лишаються невимовленими, похованими під новими дедлайнами.
+  За роки роботи накопичуються моменти — класні, важкі, дивні, інколи такі, що повністю змінюють оптику. Більшість з них так і лишаються невимовленими, похованими під новими проєктами та дедлайнами.
 
 
   Цей блог — спосіб упіймати ці моменти до того, як вони зникнуть.
 
-  Місце поговорити про роботу, людей, розвиток, індустрію, мій шлях — усе те, що не влізає в портфоліо чи пост в LinkedIn.
+  Місце поговорити про роботу, людей, розвиток, індустрію, мій шлях — усе те, що не влізає в портфоліо чи пост в соціалці.
 
 
   ## Чого очікувати
@@ -57,7 +57,7 @@ body_uk: >-
   Простий старт. Мій власний шматочок інтернету. Без тиску, без планів досягнути чогось, просто місце, куди можна складати речі, які не хочеться загубити.
 
 
-  Якщо ти це читаєш — радий, що ти тут.
+  Якщо читаєш це — дуже радий, що ти тут.
 
   Подивимось, куди воно нас приведе.
 ---
@@ -74,13 +74,13 @@ I wanted a space that has my own tone and shape, without ads, popups, or whateve
 I’ve had a career full of good moments, tough moments, strange moments, and ones that completely changed how I see things. A lot of that stays unspoken, buried under new deadlines and projects.
 
 This blog is a way to catch those moments before they disappear.
-A place to talk about work, people, growth, the industry, the journey — everything that doesn’t fit neatly into a portfolio block or a LinkedIn post.
+A place to talk about work, people, growth, the industry, the journey — everything that doesn’t fit neatly into a portfolio block or a social media post.
 
 ## What to expect
 You’ll find thoughts from real projects, reflections on career and growth, the human side of design and product, things I wish I’d known earlier, and small ideas that don’t need to be something more than a few paragraphs.
 
-Nothing overproduced. 
-Nothing trying to go viral. 
+Nothing overproduced.
+Nothing trying to go viral.
 Just honest, personal writing.
 
 ## So… here we go
