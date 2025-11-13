@@ -1,0 +1,48 @@
+name: Build Posts and RSS Feed
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'posts/**'
+      - 'build-posts.js'
+      - 'build-rss.js'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Build posts and RSS feed
+        run: |
+          npm run build-posts
+          npm run build-rss
+          
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet posts.json feed.xml blog/ || echo "changes=true" >> $GITHUB_OUTPUT
+          
+      - name: Commit and push if changed
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add posts.json feed.xml blog/
+          git commit -m "🤖 Auto-update: Rebuild posts and RSS feed"
+          git push
+
