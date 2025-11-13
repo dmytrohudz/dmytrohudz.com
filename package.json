@@ -4,8 +4,9 @@
   "description": "Personal blog with Decap CMS",
   "scripts": {
     "build-posts": "node build-posts.js",
+    "build-rss": "node build-rss.js",
     "dev": "python -m http.server 8000",
-    "build": "npm run build-posts"
+    "build": "npm run build-posts && npm run build-rss"
   },
   "dependencies": {
     "gray-matter": "^4.0.3"
