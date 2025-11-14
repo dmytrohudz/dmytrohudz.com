@@ -36,25 +36,8 @@
         });
     </script>
     <script>
-        function syncExcerptWidths() {
-          document.querySelectorAll('.post-item').forEach(card => {
-            const title = card.querySelector('.post-title');
-            if (!title) return;
-      
-            // Measure the *actual wrapped* width of the title
-            const w = Math.ceil(title.getBoundingClientRect().width);
-            // Set a CSS custom property on the card
-            card.style.setProperty('--title-width', w + 'px');
-          });
-        }
-      
-        // Run on page load, resize, and when fonts settle
-        window.addEventListener('load', syncExcerptWidths);
-        window.addEventListener('resize', syncExcerptWidths);
-      
-        // Keep it accurate if content or fonts reflow
-        const ro = new ResizeObserver(syncExcerptWidths);
-        document.querySelectorAll('.post-title').forEach(n => ro.observe(n));
+        // Note: syncExcerptWidths function removed as it's no longer needed
+        // Titles now wrap naturally without width constraints
       </script>
     <script>
         // Function to truncate content for excerpt
@@ -97,16 +80,7 @@
                         blogContent.appendChild(yearGroup);
                     });
                     
-                    // Ensure excerpts sync to title width immediately after render
-                    try {
-                        // Observe newly added titles so reflows keep widths accurate
-                        if (window.ResizeObserver) {
-                            const roDynamic = new ResizeObserver(syncExcerptWidths);
-                            blogContent.querySelectorAll('.post-title').forEach(n => roDynamic.observe(n));
-                        }
-                        // Run an immediate sync without waiting for resize
-                        syncExcerptWidths();
-                    } catch (_) {}
+                    // Titles now wrap naturally without width constraints
 
                     // Add click handlers to dynamically created posts
                     addClickHandlers();

@@ -652,7 +652,7 @@ main {
     letter-spacing: -0.2px;
     display: inline-block;      /* makes width depend on text */
     width: fit-content;         /* shrink-wrap to text */
-    max-inline-size: var(--title-width, 100%);
+    max-width: 100%;           /* allow wrapping when container is smaller */
     white-space: normal;        /* allow wrapping when needed */
     padding-right: 24px;
     position: relative;
