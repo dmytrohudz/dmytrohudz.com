@@ -1,11 +1,14 @@
 ---
 title: Why This Blog
 title_uk: Навіщо цей блог
-date: 2025-11-13T22:51:00.000+02:00
+date: 2025-11-14T16:59:00.000+02:00
 excerpt: At some point, after enough years in product, you end up with a
-  ridiculous amount of thoughts, stories, lessons, and random experiences
+  ridiculous amount of thoughts, stories, lessons, and random experiences that
+  never get shared anywhere. They sit in notes apps, in old decks, in voice
+  memos recorded while traveling to work.
 excerpt_uk: З часом в продакті назбирується така кількість думок, історій,
-  крінжових ситуацій і тих самих “aha momens”, що вони просто тонуть в нотатках
+  крінжових ситуацій і тих самих “aha momens”, що вони просто тонуть в нотатках,
+  загублених файлах та voice memos, зроблених десь по дорозі на роботу.
 tags:
   - reflections
   - ideas
@@ -16,6 +19,7 @@ body_uk: >-
   З часом в продакті назбирується така кількість думок, історій, крінжових
   ситуацій і тих самих “aha momens”, що вони просто тонуть в нотатках,
   загублених файлах та voice memos, зроблених десь по дорозі на роботу.
+
 
   Не треба з усього цього робити книжку чи чергову "унікальну" методологію. Але воно варте того, щоб десь існувати, а не пилитись в архівах.
 
@@ -53,9 +57,11 @@ body_uk: >-
 
   Якщо читаєш це — дуже радий, що ти тут.<br>Подивимось, куди воно нас приведе.
 ---
-At some point, after enough years in product, you end up with a ridiculous amount of thoughts, stories, lessons, and random experiences that never get shared anywhere. They sit in notes apps, in old decks, in voice memos recorded while traveling to work. None of it needs to be turned into a book or a “framework” — but it feels worth capturing somewhere.
+At some point, after enough years in product, you end up with a ridiculous amount of thoughts, stories, lessons, and random experiences that never get shared anywhere.
 
-I wanted a place to put all of that.<br>Somewhere simple, personal, and fully mine.
+They sit in notes apps, in old decks, in voice memos recorded while traveling to work. None of it needs to be turned into a book or a “framework” — but it feels worth capturing somewhere.
+
+I wanted a place to put all of that — somewhere simple, personal, and fully mine.
 
 ## Why build a site
 Medium, Substack, all those platforms — they’re fine, but they never feel like home. Everything looks the same, everything follows a pattern, everything feels a little processed.
