@@ -593,6 +593,7 @@ main {
     border-radius: 23px;
     align-items: center;
     width: 100%;
+    max-width: 50%;
 }
 
 @media (hover: hover) {
@@ -707,10 +708,11 @@ main {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    line-clamp: 2;          /* 2 lines */
+    line-clamp: 2;          /* 2 lines max */
     overflow: hidden;
-    /* Grow to match title width; desktop min width applied in media query */
-    max-inline-size: var(--title-width, 100%);
+    /* Fill available width */
+    width: 100%;
+    max-inline-size: 100%;
 }
 /* Post Page Styles */
 .post-article {
@@ -1305,6 +1307,7 @@ main {
         border-radius: 0px;
         align-items: flex-start;
         width: 100%;
+        max-width: 100%;
     }
 
     @media (hover: hover) {
@@ -1330,6 +1333,9 @@ main {
         font-size: 14px;
         line-height: 20px;
         letter-spacing: -0.14px;
+        /* Fill available width on mobile */
+        width: 100%;
+        max-inline-size: 100%;
     }
 
     .post-date {
@@ -1555,6 +1561,7 @@ main {
         border-radius: 0px;
         align-items: flex-start;
         width: 100%;
+        max-width: 100%;
     }
 
     @media (hover: hover) {
@@ -1574,6 +1581,9 @@ main {
         font-size: 14px;
         line-height: 20px;
         letter-spacing: -0.14px;
+        /* Fill available width on tablet */
+        width: 100%;
+        max-inline-size: 100%;
     }
 
     .post-date {
@@ -1765,9 +1775,9 @@ main {
         font-size: 14px;
         line-height: 20px;
         letter-spacing: -0.14px;
-        /* Desktop/tablet: at least 412px wide, but allow extending to title width */
-        min-inline-size: 412px;
-        max-inline-size: var(--title-width, 100%);
+        /* Fill available width */
+        width: 100%;
+        max-inline-size: 100%;
     }
     
     
@@ -1900,10 +1910,16 @@ display: none;
 }
 }
 
+@media (min-width: 1460px) and (max-width: 2564px) {
+    .post-item {
+        max-width: 35%;
+    }
+}
+
 @media (min-width: 3840px) {
 
     header, footer, main {
-        padding: 64px 80px;
+        padding: 72px 96px;
     }
 
     /* Header */
@@ -1982,19 +1998,8 @@ display: none;
         width: 36px;
         height: 36px;
     }
-}
-
-/* Large desktops: ensure excerpt is at least 412px and can expand to title width */
-@media (min-width: 1367px) {
-    .post-excerpt {
-        min-inline-size: 412px;
-        max-inline-size: var(--title-width, 100%);
+    
+    .post-item {
+        max-width: 20%;
     }
-}
-
-@media (min-width: 3840px) {
-
-header, footer, main {
-padding: 72px 96px;
-}
 }
